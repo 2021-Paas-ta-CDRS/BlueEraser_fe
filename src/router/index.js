@@ -4,6 +4,7 @@ import Router from 'vue-router'
 // views
 import HelloWorld from '@/views/HelloWorld'
 import Login from '@/views/Login'
+import Register from '@/views/Register'
 
 // component
 import TestComponent from '@/components/TestComponent'
@@ -27,5 +28,10 @@ export default new Router({
             name: 'Login',
             component: Login,
         },
+        {
+            path: '/register',
+            name: 'Register',
+            component: Register,
+        }
     ]
 })
