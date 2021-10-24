@@ -21,6 +21,7 @@
 
 <style lang="scss" scoped>
 @import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 @mixin button {
     display: inline-block;
@@ -28,6 +29,8 @@
     padding: 0 10px;
     border-radius: 5px;
 }
+
+$custom_blue: #415FF9;
 
 .gnb {
     height: 60px;
@@ -37,7 +40,8 @@
     position: fixed;
     display: flex;
     justify-content: space-between;
-    font-family: 'Nanum Gothic';
+    font-family: 'Jua';
+    border-bottom: 0.1px solid #aaa;
 
     .logo {
         margin: 10px 40px;
@@ -45,7 +49,7 @@
         line-height: 40px;
         font-size: 1.5em;
         text-decoration: none;
-        color: blue;
+        color: $custom_blue;
 
         .logo_image {
             height: 30px;
@@ -60,6 +64,7 @@
         line-height: 40px;
         margin-right: 20px;
         list-style-type: none;
+        font-family: 'Nanum Gothic';
 
         .item {
             float: left;
@@ -70,7 +75,7 @@
             .login {
                 @include button;
                 color: white;
-                background-color: blue;
+                background-color: $custom_blue;
             }
             .signup {
                 @include button;

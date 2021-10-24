@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import GNB from '@/components/GNB.vue'
+import GNB from '@/views/GNB.vue'
 
 export default {
   name: 'App',
