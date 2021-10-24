@@ -26,9 +26,6 @@
 .gnb {
     height: 60px;
     width: 100%;
-    top: 0;
-    left: 0;
-    position: fixed;
     display: flex;
     justify-content: space-between;
     font-family: 'Jua';
