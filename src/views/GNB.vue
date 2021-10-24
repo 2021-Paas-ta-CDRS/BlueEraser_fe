@@ -23,15 +23,6 @@
 @import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
-@mixin button {
-    display: inline-block;
-    text-decoration: none;
-    padding: 0 10px;
-    border-radius: 5px;
-}
-
-$custom_blue: #415FF9;
-
 .gnb {
     height: 60px;
     width: 100%;
