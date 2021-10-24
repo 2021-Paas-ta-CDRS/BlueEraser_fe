@@ -3,11 +3,11 @@
     <!-- GNB를 위해 div 한번 더 나누기 -->
     <!-- <GNB /> -->
     <div class="login">
-      <p class = "title">로그인</p>
+      <p class = "title">회원가입</p>
       <form action="">
         <input type="email" id="email" placeholder="이메일">
         <input type="password" id="password" placeholder="패스워드">
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
       </form>
     </div>
   </div>
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Register'
 }
 </script>
 

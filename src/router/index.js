@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 // views
 import HelloWorld from '@/views/HelloWorld'
-import LoginForm from '@/views/Login'
+import Login from '@/views/Login'
 
 // component
 import TestComponent from '@/components/TestComponent'
@@ -24,8 +24,8 @@ export default new Router({
         },
         {
             path: '/login',
-            name: 'LoginForm',
-            component: LoginForm,
+            name: 'Login',
+            component: Login,
         },
     ]
 })
