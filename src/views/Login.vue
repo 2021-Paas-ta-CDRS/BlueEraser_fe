@@ -3,13 +3,19 @@
     <!-- GNB를 위해 div 한번 더 나누기 -->
     <!-- <GNB /> -->
     <div class="login">
-      <p class = "title">로그인</p>
+      <p class="title">로그인</p>
       <form action="">
         <input type="email" id="email" placeholder="이메일">
         <input type="password" id="password" placeholder="패스워드">
         <button type="submit">Login</button>
       </form>
+      <hr />
+      <div class="oauth">
+        <button type="button">Naver로 로그인 하기</button>
+        <button type="button">Gmail로 로그인 하기</button>
+      </div>
     </div>
+    
   </div>
 </template>
 
@@ -22,8 +28,9 @@ export default {
 <style lang="scss" scoped>
 .container {
   height: 98vh;
+  display: flex;
   .login{
-    display: flex;
+    display: inherit;
     flex-direction: column; // 수직으로 배치
     justify-content: center; // 상하 정렬
     max-width: 280px;
@@ -44,6 +51,17 @@ export default {
       button {
         width: 100%;
         padding : 8px;
+      }
+    }
+    hr {
+      width : 100%;
+    }
+    .oauth {
+      display: inherit;
+      flex-direction: column;
+      button {
+        margin-bottom: 10px;
+        padding : 5px;
       }
     }
   }
