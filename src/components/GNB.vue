@@ -15,13 +15,19 @@
                     회원가입
                 </router-link>
             </li>
-            
         </ul>
     </div>
 </template>
 
 <style lang="scss" scoped>
 @import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+
+@mixin button {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0 10px;
+    border-radius: 5px;
+}
 
 .gnb {
     height: 60px;
@@ -62,21 +68,15 @@
             font-size: 0.8rem;
 
             .login {
-                display: inline-block;
-                text-decoration: none;
+                @include button;
                 color: white;
                 background-color: blue;
-                padding: 0 10px;
-                border-radius: 5px;
             }
             .signup {
-                display: inline-block;
-                text-decoration: none;
+                @include button;
                 color: black;
                 background-color: white;
-                padding: 0 10px;
                 border: 1px solid gray;
-                border-radius: 5px;
             }
         }
     }
