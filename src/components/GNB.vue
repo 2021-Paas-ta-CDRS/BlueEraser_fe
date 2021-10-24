@@ -5,17 +5,23 @@
             <span>파랑 지우개</span>
         </router-link>
         <ul class="nav">
-            <router-link to="/" class="item">
-                <div>로그인</div>
-            </router-link>
-            <router-link to="/" class="item">
-                <div>회원가입</div>
-            </router-link>
+            <li class="item">
+                <router-link to="login" class="login">
+                    로그인
+                </router-link>
+            </li>
+            <li class="item">
+                <router-link to="signup" class="signup">
+                    회원가입
+                </router-link>
+            </li>
+            
         </ul>
     </div>
 </template>
 
 <style lang="scss" scoped>
+@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
 
 .gnb {
     height: 60px;
@@ -25,6 +31,7 @@
     position: fixed;
     display: flex;
     justify-content: space-between;
+    font-family: 'Nanum Gothic';
 
     .logo {
         margin: 10px 40px;
@@ -35,7 +42,8 @@
         color: blue;
 
         .logo_image {
-            height: 40px;
+            height: 30px;
+            width: 30px;
             vertical-align: middle;
             margin-right: 5px;
         }
@@ -43,18 +51,33 @@
     .nav {
         margin: 10px 0;
         display: inline-block;
-        font-size: 1rem;
-        height: 40px;
         line-height: 40px;
         margin-right: 20px;
+        list-style-type: none;
 
         .item {
             float: left;
             margin-left: 8px;
-            text-decoration: none;
-            color: white;
-            border-radius: 10px;
-            background-color: blue;
+            height: 40px;
+            font-size: 0.8rem;
+
+            .login {
+                display: inline-block;
+                text-decoration: none;
+                color: white;
+                background-color: blue;
+                padding: 0 10px;
+                border-radius: 5px;
+            }
+            .signup {
+                display: inline-block;
+                text-decoration: none;
+                color: black;
+                background-color: white;
+                padding: 0 10px;
+                border: 1px solid gray;
+                border-radius: 5px;
+            }
         }
     }
 }
