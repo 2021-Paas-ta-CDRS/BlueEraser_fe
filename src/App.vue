@@ -1,17 +1,17 @@
 <template>
   <div id="app">
+    <GNB></GNB>
     <router-view></router-view>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import GNB from '@/views/GNB.vue'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld
+    GNB,
   }
 }
 </script>
