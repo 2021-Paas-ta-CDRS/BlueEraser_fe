@@ -81,7 +81,7 @@ $custom_blue: #415FF9;
                 @include button;
                 color: black;
                 background-color: white;
-                border: 1px solid gray;
+                box-shadow: 0 0 0 1px gray inset;
             }
         }
     }
