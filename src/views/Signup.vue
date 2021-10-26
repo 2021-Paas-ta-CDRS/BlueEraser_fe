@@ -5,10 +5,10 @@
       <hr />
       <div class="oauth">
         <router-link to="signup_user">
-          <button type="button">일반 회원이신가요?</button>
+          <button type="button" id="user_button">일반 회원이신가요?</button>
         </router-link>
         <router-link to="signup_doctor">
-          <button type="button">의사 선생님이신가요?</button>
+          <button type="button" id="doctor_button">의사 선생님이신가요?</button>
         </router-link>
       </div>
     </div>
@@ -51,6 +51,18 @@ export default {
         width : 100%;
         margin-bottom: 10px;
         padding : 10px;
+      }
+      #user_button {
+        border-radius: 5px;
+        border-width: 1px;
+        background-color: $blue_1;
+        color : #FFF;
+      }
+      #doctor_button {
+        border-radius: 5px;
+        border-width: 1px;
+        background-color: $blue_2;
+        color : #FFF;
       }
     }
   }
