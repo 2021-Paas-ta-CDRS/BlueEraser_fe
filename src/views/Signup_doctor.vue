@@ -1,15 +1,15 @@
 <template>
   <div class="container">
     <div class="login">
-      <p class="title">로그인</p>
+      <p class="title">회원가입</p>
       <form action="">
         <input type="email" id="email" placeholder="이메일">
         <input type="password" id="password" placeholder="패스워드">
-        <button type="submit">로그인</button>
+        <button type="submit">회원가입</button>
       </form>
       <hr />
       <div class="oauth">
-        <p class="title">다음으로 로그인</p>
+        <p class="title">다음으로 회원가입</p>
         <ul>
           <li>
             <a href="/">
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: 'Signup_user'
+  name: 'Signup_doctor'
 }
 </script>
 
@@ -66,7 +66,8 @@ export default {
       }
     }
     hr {
-      width : 100%;
+      width: 100%;
+      margin-top: 10px;
     }
     .oauth {
       display: inherit;
