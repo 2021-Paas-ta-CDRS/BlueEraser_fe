@@ -66,7 +66,8 @@ export default {
       }
     }
     hr {
-      width : 100%;
+      width: 100%;
+      margin-top: 10px;
     }
     .oauth {
       display: inherit;

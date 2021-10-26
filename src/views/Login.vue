@@ -1,27 +1,35 @@
 <template>
-  <div class = "container">
-    <!-- GNB를 위해 div 한번 더 나누기 -->
-    <!-- <GNB /> -->
+  <div class="container">
     <div class="login">
       <p class="title">로그인</p>
       <form action="">
         <input type="email" id="email" placeholder="이메일">
         <input type="password" id="password" placeholder="패스워드">
-        <button type="submit">Login</button>
+        <button type="submit">로그인</button>
       </form>
       <hr />
       <div class="oauth">
-        <button type="button">Naver로 로그인 하기</button>
-        <button type="button">Gmail로 로그인 하기</button>
+        <p class="title">다음으로 로그인</p>
+        <ul>
+          <li>
+            <a href="/">
+              <img src="@/assets/naver_square.png" alt="네이버 아이디로 로그인">
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <img src="@/assets/google_square.png" alt="구글 아이디로 로그인">
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-    
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Signup_user'
 }
 </script>
 
@@ -51,6 +59,10 @@ export default {
       button {
         width: 100%;
         padding : 8px;
+        border-radius: 5px;
+        border-width: 1px;
+        background-color: $custom_blue;
+        color: #FFF;
       }
     }
     hr {
@@ -59,9 +71,23 @@ export default {
     .oauth {
       display: inherit;
       flex-direction: column;
-      button {
-        margin-bottom: 10px;
-        padding : 5px;
+      margin : 0 auto;
+      .title {
+        margin-bottom : 7px;
+      }
+      ul {
+        display: inherit;
+        list-style: none;
+        padding-left: 0;
+        margin: 0 auto;
+        li {
+          a {
+            img {
+              width : 50px;
+              padding : 4px;
+            }
+          }
+        }
       }
     }
   }
