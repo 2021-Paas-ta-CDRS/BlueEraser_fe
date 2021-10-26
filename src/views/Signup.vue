@@ -1,22 +1,25 @@
 <template>
   <div class = "container">
-    <!-- GNB를 위해 div 한번 더 나누기 -->
-    <!-- <GNB /> -->
     <div class="login">
-      <p class = "title">회원가입</p>
-      <form action="">
-        <input type="email" id="email" placeholder="이메일">
-        <input type="password" id="password" placeholder="패스워드">
-        <button type="submit">Register</button>
-      </form>
+      <p class = "title">회원가입 타입을 선택해주세요</p>
       <hr />
       <div class="oauth">
-        <button type="button">Naver로 회원가입 하기</button>
-        <button type="button">Gmail로 회원가입 하기</button>
+        <router-link to="signup_user">
+          <button type="button">일반 회원이신가요?</button>
+        </router-link>
+        <router-link to="signup_doctor">
+          <button type="button">의사 선생님이신가요?</button>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'Signup'
+}
+</script>
 
 <style lang="scss" scoped>
 .container {
@@ -31,30 +34,23 @@
     margin: 0 auto; // 좌우 정렬
     .title {
       margin-top: 0;
+      margin-bottom: 0;
       text-align: center;
       font-weight: 700;
       font-size: 20px;
     }
-    form {
-      input {
-          width: 93%;
-          padding : 8px;
-          margin-bottom: 10px;
-        }
-      button {
-        width: 100%;
-        padding : 8px;
-      }
-    }
     hr {
+      margin-top: 10px;
+      margin-bottom: 10px;
       width : 100%;
     }
     .oauth {
       display: inherit;
       flex-direction: column;
       button {
+        width : 100%;
         margin-bottom: 10px;
-        padding : 5px;
+        padding : 10px;
       }
     }
   }
