@@ -9,11 +9,10 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "kalendar-vue": "^2.1.1",
     "node-sass": "^6.0.1",
-    "portal-vue": "^2.1.7",
     "sass-loader": "^10.2.0",
     "vue": "^2.6.11",
+    "vue-cal": "^3.10.1",
     "vue-router": "^3.5.2"
   },
   "devDependencies": {
