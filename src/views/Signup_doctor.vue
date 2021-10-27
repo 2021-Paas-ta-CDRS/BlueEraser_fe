@@ -52,7 +52,7 @@ export default {
     }
     form {
       input {
-          width: 93%;
+          width: 100%;
           padding : 8px;
           margin-bottom: 10px;
         }
