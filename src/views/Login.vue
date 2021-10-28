@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: 'Signup_user'
+  name: 'Login'
 }
 </script>
 
