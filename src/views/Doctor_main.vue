@@ -55,17 +55,28 @@ export default {
 .container {
     display: flex;
     width: 100%;
+    min-height: 90vh;
     padding-top: 60px; //gnb 침범하는 문제 해결
     .sidebar {
+        display: flex;
+        flex-direction: column;
         width: 20%;
+        padding: 5px 5px;
         border-right: 1px solid #000;
         .patient-list {
+            display: flex;
+            flex-direction: column;
+            height: 50%;
+        }
+        .notification {
             display: flex;
             flex-direction: column;
         }
     }
     .calendar {
         width: 80%;
+        padding: 5px 5px;
+        .vuecal__title-bar {background-color: rgba(255, 102, 102, 0.9);}
         vue-cal {
             .vuecal__event {
                 .health {
