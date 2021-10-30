@@ -1,12 +1,13 @@
 <template>
   <div class="container">
       <div class="sidebar">
-          <div class="patient-list">
+          <draggable v-model="patients" class="sidebar-upper">
               <input type="text" name="search" id="search" />
-              <span>홍준식</span>
-              <span>유명현</span>
-          </div>
-          <div class="notification">
+              <div v-for="patient in patients" v-bind:key="patient.id" class="patient-list">
+                  {{patient.name}}
+              </div>
+          </draggable>
+          <div class="sidebar-lower">
               <span>noti-1</span>
               <span>noti-2</span>
           </div>
@@ -29,13 +30,19 @@
 import VueCal from 'vue-cal'
 import 'vue-cal/dist/i18n/ko.js'
 import 'vue-cal/dist/vuecal.css'
+import draggable from 'vuedraggable'
 
 export default {
     name: 'Doctor_main',
     components: {
-        VueCal
+        VueCal,
+        draggable
     },
     data: () => ({
+        patients: [
+            {'name' : '유명현'},
+            {'name' : '홍준식'}
+        ],
         events: [
         {
         start: '2021-10-27 12:30',
@@ -63,12 +70,16 @@ export default {
         width: 20%;
         padding: 5px 5px;
         border-right: 1px solid #000;
-        .patient-list {
+        .sidebar-upper {
             display: flex;
             flex-direction: column;
             height: 50%;
+            .patient-list {
+                display: flex;
+                flex-direction: column;
+            }
         }
-        .notification {
+        .sidebar-lower {
             display: flex;
             flex-direction: column;
         }
