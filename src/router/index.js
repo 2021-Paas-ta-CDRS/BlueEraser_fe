@@ -5,9 +5,9 @@ import Router from 'vue-router'
 import HelloWorld from '@/views/HelloWorld'
 import Login from '@/views/Login'
 import Signup from '@/views/Signup'
-import Signup_doctor from '@/views/Signup_doctor'
-import Signup_user from '@/views/Signup_user'
-import Doctor_main from '@/views/Doctor_main'
+import SignupDoctor from '@/views/SignupDoctor'
+import SignupUser from '@/views/SignupUser'
+import DoctorMain from '@/views/DoctorMain'
 
 // component
 import TestComponent from '@/components/TestComponent'
@@ -37,19 +37,19 @@ export default new Router({
             component: Signup,
         },
         {
-            path: '/signup_doctor',
-            name: 'Signup_doctor',
-            component: Signup_doctor,
+            path: '/signup/doctor',
+            name: 'SignupDoctor',
+            component: SignupDoctor,
         },
         {
-            path: '/signup_user',
-            name: 'Signup_user',
-            component: Signup_user,
+            path: '/signup/user',
+            name: 'SignupUser',
+            component: SignupUser,
         },
         {
-            path: '/doctor_main',
-            name: 'Doctor_main',
-            component: Doctor_main,
+            path: '/doctor/main',
+            name: 'DoctorMain',
+            component: DoctorMain,
         }
     ]
 })

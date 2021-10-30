@@ -33,7 +33,7 @@ import 'vue-cal/dist/vuecal.css'
 import draggable from 'vuedraggable'
 
 export default {
-    name: 'Doctor_main',
+    name: 'DoctorMain',
     components: {
         VueCal,
         draggable
