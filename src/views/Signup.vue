@@ -4,10 +4,10 @@
       <p class = "title">회원가입 타입을 선택해주세요</p>
       <hr />
       <div class="oauth">
-        <router-link to="signup_user">
+        <router-link to="signup/user">
           <button type="button" id="user_button">일반 회원이신가요?</button>
         </router-link>
-        <router-link to="signup_doctor">
+        <router-link to="signup/doctor">
           <button type="button" id="doctor_button">의사 선생님이신가요?</button>
         </router-link>
       </div>
