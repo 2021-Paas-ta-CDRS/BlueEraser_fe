@@ -11,6 +11,7 @@ import DoctorMain from '@/views/DoctorMain'
 
 // component
 import TestComponent from '@/components/TestComponent'
+import MyPageDoctor from '@/components/MyPageDoctor'
 
 Vue.use(Router)
 
@@ -50,6 +51,11 @@ export default new Router({
             path: '/doctor/main',
             name: 'DoctorMain',
             component: DoctorMain,
+        },
+        {
+            path: '/doctor/mypage',
+            name: 'MyPageDoctor',
+            component: MyPageDoctor,
         }
     ]
 })
