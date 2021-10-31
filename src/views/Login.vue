@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: 'Signup_user',
+  name: 'Login',
   data:() => ({
     email: "",
     password: ""
@@ -45,7 +45,7 @@ export default {
     display: inherit;
     flex-direction: column; // 수직으로 배치
     justify-content: center; // 상하 정렬
-    max-width: 280px;
+    max-width: 300px;
     min-height: 100%;
     margin: 0 auto; // 좌우 정렬
     .title {
