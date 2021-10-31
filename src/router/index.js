@@ -10,6 +10,7 @@ import Signup_user from '@/views/Signup_user'
 
 // component
 import TestComponent from '@/components/TestComponent'
+import MyPageDoctor from '@/components/MyPageDoctor'
 
 Vue.use(Router)
 
@@ -44,6 +45,11 @@ export default new Router({
             path: '/signup_user',
             name: 'Signup_user',
             component: Signup_user,
+        },
+        {
+            path: '/doctor/mypage',
+            name: 'MyPageDoctor',
+            component: MyPageDoctor,
         }
     ]
 })
