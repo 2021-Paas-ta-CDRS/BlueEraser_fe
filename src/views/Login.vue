@@ -3,9 +3,9 @@
     <div class="login">
       <p class="title">로그인</p>
       <form action="">
-        <input type="email" id="email" placeholder="이메일">
-        <input type="password" id="password" placeholder="패스워드">
-        <button type="submit">로그인</button>
+        <vs-input label="이메일" v-model="email" type="email" id="email" placeholder="example@example.com" />
+        <vs-input label="비밀번호" v-model="password" type="password" id="password" placeholder="********" />
+        <vs-button to="/"><i class="bx bxs-paper-plane"></i> 로그인</vs-button>
       </form>
       <hr />
       <div class="oauth">
@@ -29,7 +29,11 @@
 
 <script>
 export default {
-  name: 'Signup_user'
+  name: 'Signup_user',
+  data:() => ({
+    email: "",
+    password: ""
+  })
 }
 </script>
 
@@ -51,19 +55,15 @@ export default {
       font-size: 20px;
     }
     form {
-      input {
-          width: 93%;
-          padding : 8px;
-          margin-bottom: 10px;
+      display: inherit;
+      flex-direction: column;
+      .vs-input-parent {
+        margin-top: 15px;
+        margin-bottom: 15px;
         }
-      button {
-        width: 100%;
-        padding : 8px;
-        border-radius: 5px;
-        border-width: 1px;
-        background-color: $custom_blue;
-        color: #FFF;
-      }
+      // .vs-button {
+        
+      // }
     }
     hr {
       width : 100%;
@@ -83,7 +83,7 @@ export default {
         li {
           a {
             img {
-              width : 50px;
+              width : 40px;
               padding : 4px;
             }
           }
