@@ -12,7 +12,9 @@
     "node-sass": "^6.0.1",
     "sass-loader": "^10.2.0",
     "vue": "^2.6.11",
+    "vue-cal": "^3.10.1",
     "vue-router": "^3.5.2",
+    "vuedraggable": "^2.24.3",
     "vuesax": "^4.0.1-alpha.25"
   },
   "devDependencies": {

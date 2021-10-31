@@ -1,5 +1,5 @@
 <template>
-  <div class = "container">
+  <div class="container">
     <div class="login">
       <p class="title">회원가입</p>
       <form action="">
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: 'Signup_user'
+  name: 'SignupDoctor'
 }
 </script>
 
@@ -66,7 +66,7 @@ export default {
       }
     }
     hr {
-      width : 100%;
+      width: 100%;
       margin-top: 10px;
     }
     .oauth {
