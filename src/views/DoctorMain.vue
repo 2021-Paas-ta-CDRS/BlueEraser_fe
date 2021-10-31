@@ -1,18 +1,30 @@
 <template>
   <div class="container">
       <div class="sidebar">
-          <input type="text" name="search" id="search" />
-          <div class="external-event"
-                v-for="(item, i) in draggables"
-                :key="i"
-                draggable="true"
-                @dragstart="onEventDragStart($event, item)">
-                <strong>{{ item.title }}</strong>
-                ({{ item.duration ? `${item.duration} min` : 'no duration' }})
-                <div>{{ item.content }}</div>
-          </div>
           <div class="sidebar-upper">
-              <!-- <input type="text" name="search" id="search" /> -->
+              <vs-input id="search-patient" v-on:input="searchPatient" v-model="searchName" placeholder="환자 검색" />
+              <div id="patient-list">
+                <div class="external-event"
+                    v-for="(item, i) in draggables"
+                    :key="i"
+                    draggable="true"
+                    @dragstart="onEventDragStart($event, item)">
+                    <strong>{{ item.title }}</strong>
+                    ({{ item.duration ? `${item.duration} min` : 'no duration' }})
+                    <div>{{ item.content }}</div>
+                </div>
+              </div>
+              <div id="filtered-patient-list">
+                <div class="external-event"
+                    v-for="(item, i) in filteredDraggables"
+                    :key="i"
+                    draggable="true"
+                    @dragstart="onEventDragStart($event, item)">
+                    <strong>{{ item.title }}</strong>
+                    ({{ item.duration ? `${item.duration} min` : 'no duration' }})
+                    <div>{{ item.content }}</div>
+                </div>
+              </div>
           </div>
           <div class="sidebar-lower">
               <span>noti-1</span>
@@ -50,7 +62,15 @@ export default {
         // draggable
     },
     data: () => ({
-        patients: [ 
+        searchName:"",
+        patients: [
+            /*
+            {
+            'name' : '유명현',
+            'packageName' : '진로상담',
+            'packageDuration' : 60,
+            },
+            */
             {
                 'name' : '유명현',
                 'packageName' : '진로상담',
@@ -61,6 +81,21 @@ export default {
                 'packageName' : '심리상담',
                 'packageDuration' : 60,
             },
+            {
+                'name' : '킹명현',
+                'packageName' : '전과상담',
+                'packageDuration' : 30,
+            },
+            {
+                'name' : '엄준식',
+                'packageName' : '전과상담',
+                'packageDuration' : 60,
+            },
+            {
+                'name' : '윤준석',
+                'packageName' : '심리상담',
+                'packageDuration' : 60,
+            }
         ],
         events: [
             {
@@ -83,11 +118,22 @@ export default {
             // title: 'Ext. Event 3',
             // content: 'content 3'    
             // }
+        ],
+        filteredDraggables: [
+            // 검색 값과 일치하는 환자들
         ]
     }),
     computed: {
     },
     methods: {
+
+        /*
+        * loadPationts()
+        * Todo : 1번 기능 구현
+        * 기능 : 1. API에서 의사의 패키지를 구독한 환자들의 리스트를 불러와 patients array에 추가합니다. (구현해야함)
+        *       2. drag & drop을 할 때 사용하는 draggables array에 환자들을 추가합니다.
+        * Post : 1. Draggables array에 환자들 목록이 추가되어 drag & drop을 할 수 있게 됩니다.
+        */
         loadPatients() {
             for (let i = 0; i < this.patients.length; i++ ) {
                 var patient = this.patients[i];
@@ -95,14 +141,17 @@ export default {
                 var name = patient.name;
                 var content = patient.packageName;
                 var duration = patient.packageDuration;
-                console.log(id);
-                console.log(name);
-                console.log(content);
-                console.log(duration);
+
                 this.addNewDraggables(id, name, content, duration);
                 this.id++;
             }
+            document.getElementById("filtered-patient-list").style.display="none";
         },
+
+        /*
+        * addNewDraggables(순서, 환자명, 구독중인 패키지명, 상담시간(분 단위) )
+        * 기능 : Draggables array에 환자의 정보를(환자 성명, 패키지명, 상담시간) 추가합니다.
+        */
         addNewDraggables(id, name, content, duration) {
             var newPatient = {
                 id: id,
@@ -112,6 +161,8 @@ export default {
             };
             this.draggables.push(newPatient);
         },
+
+        /*vue-cal drag & drop 관련 함수입니다.*/
         onEventDragStart (e, draggable) {
             // Passing the event's data to Vue Cal through the DataTransfer object.
             e.dataTransfer.setData('event', JSON.stringify(draggable))
@@ -122,6 +173,8 @@ export default {
         // `originalEvent` is the event that was dragged into Vue Cal, it can come from the same
         //  Vue Cal instance, another one, or an external source.
         // `external` is a boolean that lets you know if the event is not coming from any Vue Cal.
+
+        /*vue-cal drag & drop 관련 함수입니다.*/
         onEventDrop ({ event, originalEvent, external }) {
         // If the event is external, delete it from the data source on drop into Vue Cal.
         // If the event comes from another Vue Cal instance, it will be deleted automatically in there.
@@ -131,9 +184,35 @@ export default {
                 if (extEventToDeletePos > -1) return //this.draggables.splice(extEventToDeletePos, 1)
                 }
             }
+        },
+
+        /*
+        * searchPatient()
+        * 기능 : 입력한 단어가 포함된 환자 리스트를 보여줍니다.
+        * 예시 : searchName이 '엄'일때 환자 리스트 중 '엄'이 포함된 이름을 가진 환자가 표시됨
+        * */
+        searchPatient() {
+            if (this.searchName == "") {
+                document.getElementById("patient-list").style.display="block";
+                document.getElementById("filtered-patient-list").style.display="none";
+            }
+            else {
+                var foundPatients = [];
+                for (var i = 0; i < this.draggables.length; i++) {
+                    var draggable = this.draggables[i];
+                    console.log(draggable);
+                    if (draggable['title'].indexOf(this.searchName) != -1) {
+                        foundPatients.push(draggable); 
+                    }
+                }
+                this.filteredDraggables = foundPatients;
+                document.getElementById("patient-list").style.display="none";
+                document.getElementById("filtered-patient-list").style.display="block";
+            }
         }
     },
     mounted() {
+        /*자동으로 Patients를 db 서버에서 불러와 로드합니다.*/
         this.loadPatients()
     }
 }
@@ -155,9 +234,14 @@ export default {
             display: flex;
             flex-direction: column;
             height: 50%;
-            .patient-list {
-                display: flex;
-                flex-direction: column;
+            #search-patient {
+                margin-bottom: 10px;
+            }
+            .external-event {
+                background-color: #C5D6FF;
+                margin-bottom: 5px;
+                padding: 2px 5px;
+                border-radius: 5px;
             }
         }
         .sidebar-lower {
