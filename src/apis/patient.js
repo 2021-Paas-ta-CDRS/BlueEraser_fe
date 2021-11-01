@@ -10,11 +10,11 @@ export function registerPatient(email, password) {
         CONSTANTS.DEFAULT_URL + "/patient/signup/",
         data
     )
-    .then(function (response) {
+    .then(function(response) {
         console.log(response);
         return response;
     })
-    .catch(function (error) {
+    .catch(function(error) {
         console.log(error);
         return error;
     })
