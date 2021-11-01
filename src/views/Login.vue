@@ -27,6 +27,7 @@ export default {
 
     /*
     * Vuesax의 notification 기능을 위한 함수입니다.
+    * 200이 아닌 다른 응답이 오면 오른쪽 상단에 로그인이 실패했다는 알림을 띄웁니다.
     */
     failedToLogin(position = null, color = 'danger') {
       const noti = this.$vs.notification({

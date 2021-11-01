@@ -50,8 +50,8 @@ export function registerPatient(email, password) {
 }
 
 /*
-registerPatient (환자 회원가입)
-성공시 200 return & JWT 토큰 local storage에 저장
+registerDoctor (의사 회원가입)
+성공시 200 return
 실패시 error status code (ex. 400) return
 */
 export function registerDoctor(email, password) {
