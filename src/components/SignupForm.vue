@@ -5,7 +5,7 @@
       <form action="">
         <vs-input label="이메일" v-model="email" type="email" id="email" placeholder="example@example.com" />
         <vs-input label="비밀번호" v-model="password" type="password" id="password" placeholder="********" />
-        <vs-button href="registerUser"><i class="bx bxs-paper-plane"></i> 회원가입</vs-button>
+        <vs-button @click="registerUser"><i class="bx bxs-paper-plane"></i> 회원가입</vs-button>
       </form>
       <hr />
       <div class="oauth">
@@ -36,7 +36,7 @@ export default {
   }),
   methods: {
     registerUser() {
-      this.$emit("RegisterUser", this.email, this.password);
+      this.$emit("registerUser", this.email, this.password);
     }
   }
 }
