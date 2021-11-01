@@ -1,3 +1,3 @@
 export default Object.freeze({
-    DEFAULT_URL: "https://127.0.0.1:8000",
+    DEFAULT_URL: "https://45.248.73.50:30631",
 })
