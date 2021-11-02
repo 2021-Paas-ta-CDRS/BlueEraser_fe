@@ -18,11 +18,9 @@ export default {
     * 로그인 실패시 response 400(Bad Request) 또는 401(Unauthorized)가 응답으로 옵니다.
     */
     apiLogin(email, password) {
-      var res = login(email, password);
-      console.log(res);
-      if(res != 200) {
-        this.failedToLogin();
-      }
+      login(email, password)
+        .then((resolve) => console.log(resolve))
+        .catch(() => this.failedToLogin()); // Promise 적용
     },
 
     /*
@@ -30,7 +28,7 @@ export default {
     * 200이 아닌 다른 응답이 오면 오른쪽 상단에 로그인이 실패했다는 알림을 띄웁니다.
     */
     failedToLogin(position = null, color = 'danger') {
-      const noti = this.$vs.notification({
+      this.$vs.notification({
         progress: 'auto',
         color,
         position,
@@ -38,7 +36,6 @@ export default {
         text: `이메일 혹은 비밀번호가 다릅니다.
         확인 후 다시 시도해주세요.`
       })
-      console.log(noti);
     }
   }
 }

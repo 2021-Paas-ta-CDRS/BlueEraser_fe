@@ -3,71 +3,80 @@ import CONSTANTS from '../utils/constants'
 
 /*
 login api
-성공시 200 return & JWT 토큰 local storage에 저장
-실패시 error status code (ex. 401) return
+성공시 resolve에 true 선언 & JWT 토큰 local storage에 저장
+실패시 reject에 error 선언
 */
 export function login(email, password) {
-    var formData = new FormData();
-    formData.append("email", email)
-    formData.append("password", password)
-    axios.post(
-        CONSTANTS.DEFAULT_URL + "/user/login/",
-        formData
-    )
-    .then(function(res) {
-        localStorage.setItem('jwt', res.data.token)
-        console.log(res.status);
-        return res.status;
-    })
-    .catch(function(err) {
-        console.log(err.response.status);
-        return err.response.status;
+    return new Promise((resolve, reject) => {
+        var formData = new FormData();
+        formData.append("email", email);
+        formData.append("password", password);
+        axios.post(
+            CONSTANTS.DEFAULT_URL + "/user/login/",
+            formData
+        )
+        .then(function (res) {
+            if(res.status == 200) {
+                localStorage.setItem('jwt', res.data.token)
+                // console.log(res.status)
+                resolve(true);
+            }
+        })
+        .catch(function (err) {
+            reject(err);
+        })
     })
 }
 
 /*
 registerPatient (환자 회원가입)
-성공시 200 return
-실패시 error status code (ex. 400) return
+성공시 resolve에 true 선언
+실패시 reject에 error 선언
 */
 export function registerPatient(email, password) {
-    var formData = new FormData();
-    formData.append("email", email)
-    formData.append("password", password)
-    axios.post(
-        CONSTANTS.DEFAULT_URL + "/patient/signup/",
-        formData
-    )
-    .then(function(res) {
-        console.log(res.status);
-        return res.status;
-    })
-    .catch(function(err) {
-        console.log(err.response.status);
-        return err.response.status;
+    return new Promise((resolve, reject) => {
+        var formData = new FormData();
+        formData.append("email", email);
+        formData.append("password", password);
+        axios.post(
+            CONSTANTS.DEFAULT_URL + "/patient/signup/",
+            formData
+        )
+        .then(function (res) {
+            if(res.status == 200) {
+                console.log(res.status)
+                resolve(true);
+            }
+        })
+        .catch(function (err) {
+            reject(err);
+        })
     })
 }
 
 /*
 registerDoctor (의사 회원가입)
-성공시 200 return
-실패시 error status code (ex. 400) return
+성공시 resolve에 true 선언
+실패시 reject에 error 선언
 */
 export function registerDoctor(email, password) {
-    var formData = new FormData();
-    formData.append("email", email)
-    formData.append("password", password)
-    axios.post(
-        CONSTANTS.DEFAULT_URL + "/doctor/signup/",
-        formData
-    )
-    .then(function(res) {
-        console.log(res.status);
-        return res.status;
-    })
-    .catch(function(err) {
-        console.log(err.response.status);
-        return err.response.status;
+    return new Promise((resolve, reject) => {
+        var formData = new FormData();
+        formData.append("email", email);
+        formData.append("password", password);
+        axios.post(
+            CONSTANTS.DEFAULT_URL + "/doctor/signup/",
+            formData
+        )
+        .then(function (res) {
+            if(res.status == 200) {
+                console.log(res.status)
+                resolve(true);
+            }
+        })
+        .catch(function (err) {
+            reject(err);
+        })
     })
 }
 

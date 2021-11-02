@@ -13,13 +13,9 @@ export default {
   },
   methods: {
     registerUser(email, password) {
-      var res = registerDoctor(email, password);
-      if(res == 201) {
-        this.successReg();
-      }
-      else if(res == 400) {
-        this.alreadyReg();
-      }
+      registerDoctor(email, password)
+        .then(() => this.successReg())
+        .catch(() => this.alreadyReg()); // Promise 적용
     },
 
     /*
@@ -28,14 +24,13 @@ export default {
     * Vuesax의 notification 함수입니다.
     */
     successReg(position = null, color = 'success') {
-      const noti = this.$vs.notification({
+      this.$vs.notification({
         progress: 'auto',
         color,
         position,
         title: '회원가입 신청이 완료되었습니다!',
         text: `관리자의 승인 후 사용가능합니다.`
       })
-      console.log(noti);
     },
 
     /*
@@ -44,14 +39,13 @@ export default {
     * Vuesax의 notification 함수입니다.
     */
     alreadyReg(position = null, color = 'danger') {
-      const noti = this.$vs.notification({
+      this.$vs.notification({
         progress: 'auto',
         color,
         position,
         title: '회원가입에 실패하였습니다.',
         text: `이미 가입된 계정입니다.`
       })
-      console.log(noti);
     }
   }
 }
