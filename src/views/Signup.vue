@@ -4,12 +4,8 @@
       <p class = "title">회원가입 타입을 선택해주세요</p>
       <hr />
       <div class="oauth">
-        <router-link to="signup/user">
-          <button type="button" id="user_button">일반 회원이신가요?</button>
-        </router-link>
-        <router-link to="signup/doctor">
-          <button type="button" id="doctor_button">의사 선생님이신가요?</button>
-        </router-link>
+        <vs-button to="/signup/user" gradient color="rgb(59, 222, 200)"><i class="bx bxs-paper-plane"></i> 일반 회원이신가요?</vs-button>
+        <vs-button to="/signup/doctor" gradient color="rgb(25, 91, 255)"><i class="bx bxs-paper-plane"></i> 의사 선생님이신가요?</vs-button>
       </div>
     </div>
   </div>
@@ -23,13 +19,13 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  height: 98vh;
+  height: 93vh;
   display: flex;
   .login{
     display: inherit;
     flex-direction: column; // 수직으로 배치
     justify-content: center; // 상하 정렬
-    max-width: 280px;
+    min-width: 300px;
     min-height: 100%;
     margin: 0 auto; // 좌우 정렬
     .title {
@@ -48,7 +44,6 @@ export default {
       display: inherit;
       flex-direction: column;
       button {
-        width : 100%;
         margin-bottom: 10px;
         padding : 10px;
       }

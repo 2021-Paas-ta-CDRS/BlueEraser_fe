@@ -1,96 +1,56 @@
 <template>
-  <div class = "container">
-    <div class="login">
-      <p class="title">회원가입</p>
-      <form action="">
-        <input type="email" id="email" placeholder="이메일">
-        <input type="password" id="password" placeholder="패스워드">
-        <button type="submit">회원가입</button>
-      </form>
-      <hr />
-      <div class="oauth">
-        <p class="title">다음으로 회원가입</p>
-        <ul>
-          <li>
-            <a href="/">
-              <img src="@/assets/naver_square.png" alt="네이버 아이디로 로그인">
-            </a>
-          </li>
-          <li>
-            <a href="/">
-              <img src="@/assets/google_square.png" alt="구글 아이디로 로그인">
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <SignupForm v-on:registerUser="registerUser" />
 </template>
 
 <script>
+import SignupForm from '@/components/SignupForm.vue'
+import {registerPatient} from '@/apis/patient.js'
+
 export default {
-  name: 'SignupUser'
+  name: 'SignupUser',
+  components: {
+    SignupForm
+  },
+  methods: {
+    registerUser(email, password) {
+      registerPatient(email, password)
+        .then(() => this.successReg())
+        .catch(() => this.alreadyReg()); // Promise 적용
+    },
+
+    /*
+    * successReg()
+    * 기능 : 회원가입 신청이 성공하였다고 오른쪽 상단에 알림을 보냅니다.
+    * Vuesax의 notification 함수입니다.
+    */
+    successReg(position = null, color = 'success') {
+      this.$vs.notification({
+        progress: 'auto',
+        color,
+        position,
+        title: '회원가입에 성공하였습니다!',
+        text: `로그인 페이지로 이동해주세요.`
+      })
+    },
+
+    /*
+    * alreadyReg()
+    * 기능 : 오른쪽 상단에 회원가입 실패 알림을 보냅니다.
+    * Vuesax의 notification 함수입니다.
+    */
+    alreadyReg(position = null, color = 'danger') {
+      this.$vs.notification({
+        progress: 'auto',
+        color,
+        position,
+        title: '회원가입에 실패하였습니다.',
+        text: `이미 가입된 계정 또는 잘못된 입력입니다.`
+      })
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.container {
-  height: 98vh;
-  display: flex;
-  .login{
-    display: inherit;
-    flex-direction: column; // 수직으로 배치
-    justify-content: center; // 상하 정렬
-    max-width: 280px;
-    min-height: 100%;
-    margin: 0 auto; // 좌우 정렬
-    .title {
-      margin-top: 0;
-      text-align: center;
-      font-weight: 700;
-      font-size: 20px;
-    }
-    form {
-      input {
-          width: 93%;
-          padding : 8px;
-          margin-bottom: 10px;
-        }
-      button {
-        width: 100%;
-        padding : 8px;
-        border-radius: 5px;
-        border-width: 1px;
-        background-color: $custom_blue;
-        color: #FFF;
-      }
-    }
-    hr {
-      width : 100%;
-      margin-top: 10px;
-    }
-    .oauth {
-      display: inherit;
-      flex-direction: column;
-      margin : 0 auto;
-      .title {
-        margin-bottom : 7px;
-      }
-      ul {
-        display: inherit;
-        list-style: none;
-        padding-left: 0;
-        margin: 0 auto;
-        li {
-          a {
-            img {
-              width : 50px;
-              padding : 4px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
+
 </style>
