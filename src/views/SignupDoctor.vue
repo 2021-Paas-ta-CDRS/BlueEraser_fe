@@ -28,8 +28,8 @@ export default {
         progress: 'auto',
         color,
         position,
-        title: '회원가입 신청이 완료되었습니다!',
-        text: `관리자의 승인 후 사용가능합니다.`
+        title: '회원가입에 성공하였습니다!',
+        text: `로그인 페이지로 이동해주세요.`
       })
     },
 
