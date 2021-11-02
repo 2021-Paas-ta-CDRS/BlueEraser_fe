@@ -43,9 +43,11 @@ export function registerPatient(email, password) {
             formData
         )
         .then(function (res) {
-            if(res.status == 200) {
+            if(res.status == 201) {
                 console.log(res.status)
                 resolve(true);
+            } else {
+                reject(res);
             }
         })
         .catch(function (err) {
@@ -69,9 +71,11 @@ export function registerDoctor(email, password) {
             formData
         )
         .then(function (res) {
-            if(res.status == 200) {
+            if(res.status == 201) {
                 console.log(res.status)
                 resolve(true);
+            } else {
+                reject(res);
             }
         })
         .catch(function (err) {
