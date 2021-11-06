@@ -8,6 +8,7 @@ import Signup from '@/views/Signup'
 import SignupDoctor from '@/views/SignupDoctor'
 import SignupUser from '@/views/SignupUser'
 import DoctorMain from '@/views/DoctorMain'
+import CounselingRoom from '@/views/CounselingRoom'
 
 // component
 import TestComponent from '@/components/TestComponent'
@@ -56,6 +57,11 @@ export default new Router({
             path: '/doctor/mypage',
             name: 'MyPageDoctor',
             component: MyPageDoctor,
+        },
+        {
+            path: '/counselingRoom',
+            name: 'CounselingRoom',
+            component: CounselingRoom,
         }
     ]
 })
