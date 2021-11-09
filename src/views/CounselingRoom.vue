@@ -1,17 +1,31 @@
 <template>
-    <WebRTC width="100%"></WebRTC>
+    <vue-webrtc ref="webrtc" width="100%" roomId="234132"/>
 </template>
 
 <script>
-import {WebRTC} from 'vue-webrtc'
+import Vue from 'vue'
+import WebRTC from 'vue-webrtc'
+// ISSUE 5: https://github.com/westonsoftware/vue-webrtc/issues/5
+import * as io from 'socket.io-client'
+window.io = io
+//
+Vue.use(WebRTC)
+
 export default {
     name: 'CounselingRoom',
-    components: {
-        WebRTC
+    mounted: function() {
+        this.$refs.webrtc.join()
     }
 }
 </script>
 
 <style lang="scss" scoped>
-
+vue-webrtc {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
 </style>
