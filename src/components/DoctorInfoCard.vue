@@ -4,6 +4,9 @@
             <template #title>
                 <h3>{{ doctor.name }}</h3>
             </template>
+            <template #img>
+                <img :src="doctor.profileImage" alt="">
+            </template>
             <template #text>
                 <p>
                     자기소개를 이곳에 써주세요.
@@ -37,3 +40,9 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+.vs-card__group-cards::-webkit-scrollbar {
+    display: none;
+}
+</style>
