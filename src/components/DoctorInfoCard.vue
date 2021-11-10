@@ -1,11 +1,28 @@
 <template>
-    <div>
-        <div v-for="doctor in doctors" v-bind:key='doctor'>{{ doctor.name }}</div>
-    </div>
+    <vs-card-group>
+        <vs-card v-for="doctor in doctors" v-bind:key="doctor">
+            <template #title>
+                <h3>{{ doctor.name }}</h3>
+            </template>
+            <template #text>
+                <p>
+                    자기소개를 이곳에 써주세요.
+                    자기소개를 이곳에 써주세요.
+                    자기소개를 이곳에 써주세요.
+                    자기소개를 이곳에 써주세요.
+                    자기소개를 이곳에 써주세요.
+                    자기소개를 이곳에 써주세요.
+                    자기소개를 이곳에 써주세요.
+                    자기소개를 이곳에 써주세요.
+                    자기소개를 이곳에 써주세요.
+                </p>
+            </template>
+        </vs-card>
+    </vs-card-group>
 </template>
 
 <script>
-import { getDoctorList } from '../api/index.js'
+import {getDoctorList} from '@/apis/patient.js'
 
 export default {
     data() {

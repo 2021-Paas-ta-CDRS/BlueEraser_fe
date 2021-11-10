@@ -13,14 +13,16 @@ import DoctorMain from '@/views/DoctorMain'
 import TestComponent from '@/components/TestComponent'
 import MyPageDoctor from '@/components/MyPageDoctor'
 
+import DoctorInfoCard from '@/components/DoctorInfoCard'
+
 Vue.use(Router)
 
 export default new Router({
     routes: [
         {
             path: '/',
-            name: 'HelloWorld',
-            component: HelloWorld
+            name: 'DoctorInfoCard',
+            component: DoctorInfoCard
         },
         {
             path: '/test',
