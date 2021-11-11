@@ -1,6 +1,6 @@
 <template>
     <!-- 이후 roomId를 조정해 개인실로 만들기 -->
-    <vue-webrtc ref="webrtc" width="50%" roomId="234132"/>
+    <vue-webrtc ref="webrtc" cameraHeight="81%"  roomId="234132"/>
 </template>
 
 <script>
@@ -29,4 +29,14 @@ vue-webrtc {
     color: #2c3e50;
     margin-top: 60px;
 }
+
+.video-list {
+    padding: 10px 10px;
+    width: 96%;
+    height: 96%;
+    flex-direction: column;
+    
+}
+// .video-item {
+// }
 </style>
