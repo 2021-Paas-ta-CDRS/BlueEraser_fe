@@ -84,6 +84,6 @@ export function registerDoctor(email, password) {
     })
 }
 
-export function getDoctor() {
-    return axios.get(CONSTANTS.DEFAULT_URL + "/doctor");
+export function getDoctorList() {
+    return axios.get(CONSTANTS.DEFAULT_URL + "/doctor/");
 }
