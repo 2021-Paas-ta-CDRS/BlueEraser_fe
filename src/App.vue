@@ -18,6 +18,7 @@ export default {
 
 <style lang="scss">
 body {
+  padding-top: 37px;
   overflow: scroll;
   -ms-overflow-style: none;
 }
