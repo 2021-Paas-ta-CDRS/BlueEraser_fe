@@ -2,13 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // views
-import HelloWorld from '@/views/HelloWorld'
 import Login from '@/views/Login'
 import Signup from '@/views/Signup'
 import SignupDoctor from '@/views/SignupDoctor'
 import SignupUser from '@/views/SignupUser'
 import DoctorMain from '@/views/DoctorMain'
 import CounselingRoom from '@/views/CounselingRoom'
+import NonLoginMain from '@/views/NonLoginMain'
 
 // component
 import TestComponent from '@/components/TestComponent'
@@ -20,8 +20,8 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'HelloWorld',
-            component: HelloWorld
+            name: 'NonLoginMain',
+            component: NonLoginMain
         },
         {
             path: '/test',

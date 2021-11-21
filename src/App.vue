@@ -15,3 +15,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+body {
+  padding-top: 37px;
+  overflow: scroll;
+  -ms-overflow-style: none;
+}
+body::-webkit-scrollbar {
+  display: none;
+  width: 0 !important;
+}
+</style>
