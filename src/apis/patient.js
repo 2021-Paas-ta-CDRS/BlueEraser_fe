@@ -102,5 +102,4 @@ getQuestionnaire (문답지 가져오기)
 환자용 문답지를 가져옵니다.
 */
 export function getQuestionnaire() {
-
 }

@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import {getQuestionnaire} from '@/apis/patient.js'
 export default {
     name: 'Survey',
     data:() => ({
@@ -14,7 +15,13 @@ export default {
       answers: []
     }),
     methods: {
-
+        /*inputQuestionnaire()
+        * api를 통해 문답지를 받아 question-from div에 넣습니다.
+        */
+        inputQuetionnaire() {
+            getQuestionnaire();
+            // TODO : question-form에 문답 넣기
+        }
     }
 }
 </script>
