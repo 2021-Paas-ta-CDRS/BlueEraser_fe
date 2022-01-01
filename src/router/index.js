@@ -9,6 +9,7 @@ import SignupUser from '@/views/SignupUser'
 import DoctorMain from '@/views/DoctorMain'
 import CounselingRoom from '@/views/CounselingRoom'
 import NonLoginMain from '@/views/NonLoginMain'
+import Survey from '@/views/Survey'
 
 // component
 import TestComponent from '@/components/TestComponent'
@@ -62,6 +63,11 @@ export default new Router({
             path: '/counselingRoom',
             name: 'CounselingRoom',
             component: CounselingRoom,
+        },
+        {
+            path: '/survey',
+            name: 'Survey',
+            component: Survey,
         }
     ]
 })

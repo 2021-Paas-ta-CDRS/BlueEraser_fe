@@ -12,16 +12,22 @@ export default {
     name: 'Survey',
     data:() => ({
       questions: [],
-      answers: []
+      answers: [],
+      test: ""
     }),
     methods: {
         /*inputQuestionnaire()
         * api를 통해 문답지를 받아 question-from div에 넣습니다.
         */
         inputQuetionnaire() {
-            getQuestionnaire();
-            // TODO : question-form에 문답 넣기
+            this.questions = getQuestionnaire();
+            // console.log(this.questions);
         }
+    },
+    mounted() {
+        this.inputQuetionnaire()
+        .then((resolve) => console.log(resolve))
+        .catch((err) => console.log(err))
     }
 }
 </script>
