@@ -1,4 +1,7 @@
 import axios from 'axios';
+// import { resolve,reject } from 'core-js/es/promise/index';
+// import { resolve } from 'core-js/es6/promise';
+// import { reject } from 'core-js/fn/promise';
 import CONSTANTS from '../utils/constants'
 
 axios.defaults.baseURL = CONSTANTS.ENDPOINT;
@@ -102,4 +105,20 @@ getQuestionnaire (문답지 가져오기)
 환자용 문답지를 가져옵니다.
 */
 export function getQuestionnaire() {
+    return new Promise((resolve, reject) => {
+        axios.get(
+            CONSTANTS.DEFAULT_URL + "/question/question_form/"
+        )
+        .then(function (res) {
+            if(res.status == 200) {
+                resolve(res.data);
+            }
+            else {
+                reject(res);
+            }
+        })
+        .catch(function (err) {
+            reject(err);
+        })
+    })
 }
