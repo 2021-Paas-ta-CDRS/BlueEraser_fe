@@ -12,6 +12,7 @@
           </div>
           <br/>
       </div>
+      <!-- TODO: @click에 api 호출하는 함수 적용하기 -->
       <vs-button class="submitForm"
         flat
         :active="true"
@@ -29,18 +30,16 @@ export default {
     name: 'Survey',
     data:() => ({
       questions: {},
-      //TODO : answers의 index를 직접 안만들고 바로 접근할 수 있는 방법?
+      //TODO: answers의 index를 직접 안만들고 바로 접근할 수 있는 방법?
       answers: ['','','','','','','','','','','','','','','','','','','',''],
     }),
     methods: {
-      //TODO : form submit 되었을 때 응답값 저장하는 api 호출하기
+      //TODO: form submit 되었을 때 응답값 저장하는 api 호출하기
       // 비어있는 응답이 없도록 확인하는 로직도 같이
     },
     created() {
         getQuestionnaire()
         .then(res => {
-            console.log(res)
-            //console.log(typeof(res)) // object
             this.questions = res
         })
         .catch(err => { console.log(err)})
