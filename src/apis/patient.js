@@ -95,21 +95,32 @@ export function getDoctorList() {
 getQuestionnaire (문답지 가져오기)
 환자용 문답지를 가져옵니다.
 */
-export function getQuestionnaire() {
+export function getQuestionnaire(formName = '') {
     return new Promise((resolve, reject) => {
         axios.get(
             CONSTANTS.DEFAULT_URL + "/question/question_form/"
         )
         .then(function (res) {
             if(res.status == 200) {
-                resolve(res.data);
+                if(formName == '') {
+                    console.log(res.data[0]['form'])
+                    resolve(res.data[0]['form'])
+                }
+                else {
+                    for(var i = 0; i < res.data.length; i++) {
+                        if(res.data[i]['questionFormName'] == formName) {
+                            resolve(res.data[i]['form'])
+                        }
+                    }
+                }
             }
             else {
-                reject(res);
+                const error = new Error("Get Questionnaire failed")
+                reject(error)
             }
         })
         .catch(function (err) {
-            reject(err);
+            reject(err)
         })
     })
 }
