@@ -103,6 +103,8 @@ export function updateDoctor(payload) {
 /*
 getQuestionnaire (문답지 가져오기)
 환자용 문답지를 가져옵니다.
+formName이 지정되어 있지 않을 경우 응답으로 온 응답지 array의 0번째 값을 return 합니다.
+지정되어 있을 경우 formName과 일치하는 응답지를 return 합니다. 찾지 못할 경우 0번째 값을 return 합니다.
 */
 export function getQuestionnaire(formName = '') {
     return new Promise((resolve, reject) => {
