@@ -1,6 +1,6 @@
 import axios from 'axios';
-import CONSTANTS from '../utils/constants'
 
+axios.defaults.baseURL = 'https://z2pa5zfam0.execute-api.ap-northeast-2.amazonaws.com/dev';
 /*
 login api
 성공시 resolve에 true 선언 & JWT 토큰 local storage에 저장
@@ -12,13 +12,14 @@ export function login(email, password) {
         formData.append("email", email);
         formData.append("password", password);
         axios.post(
-            CONSTANTS.DEFAULT_URL + "/user/login/",
+            "/user/login/",
             formData
         )
         .then(function (res) {
             if(res.status == 200) {
                 localStorage.setItem('jwt', res.data.token)
                 // console.log(res.status)
+                axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
                 resolve(true);
             }
         })
@@ -39,7 +40,7 @@ export function registerPatient(email, password) {
         formData.append("email", email);
         formData.append("password", password);
         axios.post(
-            CONSTANTS.DEFAULT_URL + "/patient/signup/",
+            "/patient/signup/",
             formData
         )
         .then(function (res) {
@@ -67,7 +68,7 @@ export function registerDoctor(email, password) {
         formData.append("email", email);
         formData.append("password", password);
         axios.post(
-            CONSTANTS.DEFAULT_URL + "/doctor/signup/",
+            "/doctor/signup/",
             formData
         )
         .then(function (res) {
@@ -85,13 +86,13 @@ export function registerDoctor(email, password) {
 }
 
 export function getDoctorList() {
-    return axios.get(CONSTANTS.DEFAULT_URL + "/doctor/");
+    return axios.get("/doctor/");
 }
 
 export function getDoctor() {
-    return axios.get(CONSTANTS.DEFAULT_URL + "/doctor/");
+    return axios.get("/doctor/");
 }
 
 export function updateDoctor(payload) {
-    return axios.post(CONSTANTS.DEFAULT_URL + "/doctor/update/", payload);
+    return axios.post("/doctor/update/", payload);
 }
