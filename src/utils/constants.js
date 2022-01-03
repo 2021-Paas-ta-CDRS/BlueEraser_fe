@@ -1,3 +1,3 @@
 export default Object.freeze({
-    DEFAULT_URL: "http://127.0.0.1:8000",
+    DEFAULT_URL: "https://z2pa5zfam0.execute-api.ap-northeast-2.amazonaws.com/dev",
 })
