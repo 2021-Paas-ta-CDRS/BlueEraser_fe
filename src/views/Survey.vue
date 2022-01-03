@@ -1,7 +1,7 @@
 <template>
   <div class = "container">
     <div class="question-form">
-      <div v-for="(question, i) in questions" :key="question">
+      <div v-for="(question, i) in apiRes['form']" :key="question">
           <p class="question">{{parseInt(i) + 1}} : {{question}}</p>
           <div class="selectRadio">
               <vs-radio v-model="answers[parseInt(i)]" val="1">매우 아니다</vs-radio>
@@ -29,14 +29,19 @@ import {getQuestionnaire} from '@/apis/patient.js'
 export default {
     name: 'Survey',
     data:() => ({
-      questions: {},
+      apiRes: {},
       answers: [],
     }),
     methods: {
       //TODO: form submit 되었을 때 응답값 저장하는 api 호출하기
       // 비어있는 응답이 없도록 확인하는 로직도 같이
+
+      /*
+      * makeAnswersIdx()
+      * 문항 개수에 맞춰 answers에 빈 응답을 추가합니다.
+      */
       makeAnswersIdx() {
-          var questionsLen = Object.keys(this.questions).length; // json은 바로 length로 구할 수 없음. key의 개수를 세는 방식으로 우회
+          var questionsLen = Object.keys(this.apiRes['form']).length; // json은 바로 length로 구할 수 없음. key의 개수를 세는 방식으로 우회
           for(var i = 0; i < questionsLen; i++) {
               this.answers.push('')
           }
@@ -45,7 +50,7 @@ export default {
     created() {
         getQuestionnaire()
         .then(res => {
-            this.questions = res
+            this.apiRes = res
             this.makeAnswersIdx();
         })
         .catch(err => { console.log(err)})
