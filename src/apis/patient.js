@@ -114,7 +114,6 @@ export function getQuestionnaire(formName = '') {
         .then(function (res) {
             if(res.status == 200) {
                 if(formName == '') {
-                    console.log(res.data[0]['form'])
                     resolve(res.data[0]['form'])
                 }
                 else {
