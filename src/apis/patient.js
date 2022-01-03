@@ -1,6 +1,7 @@
 import axios from 'axios';
+import CONSTANTS from '../utils/constants'
 
-axios.defaults.baseURL = 'https://z2pa5zfam0.execute-api.ap-northeast-2.amazonaws.com/dev';
+axios.defaults.baseURL = CONSTANTS.ENDPOINT;
 /*
 login api
 성공시 resolve에 true 선언 & JWT 토큰 local storage에 저장
