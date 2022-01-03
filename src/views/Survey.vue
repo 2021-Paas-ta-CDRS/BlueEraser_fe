@@ -35,7 +35,9 @@ export default {
     methods: {
       //TODO: form submit 되었을 때 응답값 저장하는 api 호출하기
       // 비어있는 응답이 없도록 확인하는 로직도 같이
-
+      submitAnswers() {
+          
+      },
       /*
       * makeAnswersIdx()
       * 문항 개수에 맞춰 answers에 빈 응답을 추가합니다.
