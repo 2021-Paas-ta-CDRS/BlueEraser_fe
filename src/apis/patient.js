@@ -116,8 +116,7 @@ export function getQuestionnaire(formName = '') {
                 }
             }
             else {
-                const error = new Error("Get Questionnaire failed")
-                reject(error)
+                reject(res)
             }
         })
         .catch(function (err) {
@@ -125,3 +124,31 @@ export function getQuestionnaire(formName = '') {
         })
     })
 }
+
+// export function submitQuestionnaireAnswers(answer, point, questionForm, jwt) {
+//     return new Promise((resolve, reject) => {
+//         var formData = new FormData();
+//         formData.append("answer", answer);
+//         formData.append("point", point);
+//         formData.append("questionForm", questionForm);
+//         axios.post(
+//             CONSTANTS.DEFAULT_URL + "/question/",
+//             formData, {
+//                 headers: {
+//                     'Authorization' : jwt
+//                 }
+//             }
+//         )
+//         .then(function(res) {
+//             if(res.status == 201) {
+//                 resolve(true)
+//             }
+//             else {
+//                 reject(res)
+//             }
+//         })
+//         .catch(function (err) {
+//             reject(err)
+//         })
+//     })
+// }
