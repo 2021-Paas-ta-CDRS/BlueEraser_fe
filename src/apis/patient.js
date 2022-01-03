@@ -114,12 +114,12 @@ export function getQuestionnaire(formName = '') {
         .then(function (res) {
             if(res.status == 200) {
                 if(formName == '') {
-                    resolve(res.data[0]['form'])
+                    resolve(res.data[0])
                 }
                 else {
                     for(var i = 0; i < res.data.length; i++) {
                         if(res.data[i]['questionFormName'] == formName) {
-                            resolve(res.data[i]['form'])
+                            resolve(res.data[i])
                         }
                     }
                 }
