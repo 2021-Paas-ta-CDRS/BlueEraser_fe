@@ -31,12 +31,12 @@ export default {
     data:() => ({
       apiRes: {},
       answers: [],
+      questionLen: 0
     }),
     methods: {
       //TODO: form submit 되었을 때 응답값 저장하는 api 호출하기
       // 비어있는 응답이 없도록 확인하는 로직도 같이
       submitAnswers() {
-          
       },
       /*
       * makeAnswersIdx()
@@ -46,6 +46,8 @@ export default {
           var questionsLen = Object.keys(this.apiRes['form']).length; // json은 바로 length로 구할 수 없음. key의 개수를 세는 방식으로 우회
           for(var i = 0; i < questionsLen; i++) {
               this.answers.push('')
+              // this.answers[i] = ''
+              this.questionLen++
           }
       }
     },
