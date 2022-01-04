@@ -1,5 +1,6 @@
 <template>
   <div class = "container">
+    <h2 class="title">문답</h2>
     <div class="question-form">
       <div v-for="(question, i) in apiRes['form']" :key="question">
           <p class="question">{{parseInt(i) + 1}} : {{question}}</p>
@@ -16,7 +17,7 @@
       <vs-button class="submitForm"
         flat
         :active="true"
-        @click="console.log('submitted')"
+        @click="submitAnswers()"
       >
       제출
       </vs-button>
@@ -34,21 +35,65 @@ export default {
       questionLen: 0
     }),
     methods: {
-      //TODO: form submit 되었을 때 응답값 저장하는 api 호출하기
-      // 비어있는 응답이 없도록 확인하는 로직도 같이
+      /*
+      * submitAnswers()
+      * 응답을 서버에 api로 넘깁니다.
+      * 문답이 비어있을 경우 모든 응답을 해달라는 알림을 return 합니다.
+      * 모든 문답을 완료했을 경우 submitQuestionnaireAnswers 함수로 api에 응답을 넘깁니다.
+      */
       submitAnswers() {
+        var answersJson = {};
+        for(var i = 0; i < this.answers.length; i++)
+        {
+          if (this.answers[i] == '') {
+            return this.emptyAnswer();
+          }
+          answersJson[i] = this.answers[i];
+        }
+        
+        // TODO: api 요청함수 완료되면 주석 풀고 테스트
+        // var point = this.calculatePoint();
+        // var jwt = 'jwt ' + localStorage.getItem('jwt');
+        // var questionForm = this.apiRes['id'];
+        // console.log(answersJson, point, jwt, questionForm); // test
+
+        // TODO: api 요청함수 완료되면 주석 풀고 테스트
+        // submitQuestionnaireAnswers(answersJson, point, questionForm, jwt);
       },
+
+      /*
+      * calculatePoint()
+      * 응답지의 점수를 계산해서 return 합니다.
+      * 모든 응답이 되어있다고 가정되었습니다.
+      */
+      calculatePoint() {
+          var pointSum = 0;
+          for(var i = 0; i < this.answers.length; i++) {
+              pointSum += parseInt(this.answers[i]);
+          }
+          return pointSum;
+      },
+
+      emptyAnswer(position = null, color = 'danger') {
+        this.$vs.notification({
+            progress: 'auto',
+            color,
+            position,
+            title: '제출 실패',
+            text: `모든 문항에 응답해주세요.`
+        })
+      },
+      
       /*
       * makeAnswersIdx()
-      * 문항 개수에 맞춰 answers에 빈 응답을 추가합니다.
+      * 문항 개수에 맞춰 answers에 빈 응답을 추가합니다. (index 만드는 목적)
       */
       makeAnswersIdx() {
-          var questionsLen = Object.keys(this.apiRes['form']).length; // json은 바로 length로 구할 수 없음. key의 개수를 세는 방식으로 우회
-          for(var i = 0; i < questionsLen; i++) {
-              this.answers.push('')
-              // this.answers[i] = ''
-              this.questionLen++
-          }
+        var questionsLen = Object.keys(this.apiRes['form']).length; // json은 바로 length로 구할 수 없음. key의 개수를 세는 방식으로 우회
+        for(var i = 0; i < questionsLen; i++) {
+            this.answers.push('')
+            this.questionLen++
+        }
       }
     },
     created() {
@@ -63,6 +108,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title {
+    text-align: center;
+}
 .question {
     text-align: center;
 }
