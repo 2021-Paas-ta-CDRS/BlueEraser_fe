@@ -50,7 +50,7 @@ export default {
           }
           answersJson[i] = this.answers[i];
         }
-        
+
         // TODO: api 요청함수 완료되면 주석 풀고 테스트
         // var point = this.calculatePoint();
         // var jwt = 'jwt ' + localStorage.getItem('jwt');
