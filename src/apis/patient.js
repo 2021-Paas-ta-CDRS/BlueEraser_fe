@@ -139,6 +139,7 @@ export function getQuestionnaire(formName = '') {
 //         var formData = new FormData();
 //         formData.append("answer", answer);
 //         formData.append("point", point);
+//         formData.append("patient", '');
 //         formData.append("questionForm", questionForm);
 //         axios.post(
 //             CONSTANTS.DEFAULT_URL + "/question/",
