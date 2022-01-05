@@ -9,17 +9,17 @@ login api
 */
 export function login(email, password) {
     return new Promise((resolve, reject) => {
-        var formData = new FormData();
-        formData.append("email", email);
-        formData.append("password", password);
+        var data = {
+            "email": email,
+            "password": password
+        }
         axios.post(
             "/user/login/",
-            formData
+            data
         )
         .then(function (res) {
             if(res.status == 200) {
                 localStorage.setItem('jwt', res.data.token)
-                // console.log(res.status)
                 axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
                 resolve(true);
             }
@@ -37,12 +37,14 @@ registerPatient (환자 회원가입)
 */
 export function registerPatient(email, password) {
     return new Promise((resolve, reject) => {
-        var formData = new FormData();
-        formData.append("email", email);
-        formData.append("password", password);
+        var data = {
+            "email": email,
+            "password": password,
+            "userType": "P"
+        }
         axios.post(
             "/patient/signup/",
-            formData
+            data
         )
         .then(function (res) {
             if(res.status == 201) {
@@ -65,12 +67,14 @@ registerDoctor (의사 회원가입)
 */
 export function registerDoctor(email, password) {
     return new Promise((resolve, reject) => {
-        var formData = new FormData();
-        formData.append("email", email);
-        formData.append("password", password);
+        var data = {
+            "email": email,
+            "password": password,
+            "userType": "D"
+        }
         axios.post(
             "/doctor/signup/",
-            formData
+            data
         )
         .then(function (res) {
             if(res.status == 201) {
@@ -96,4 +100,56 @@ export function getDoctor() {
 
 export function updateDoctor(payload) {
     return axios.post("/doctor/update/", payload);
+}
+/*
+getQuestionnaire (문답지 가져오기)
+환자용 문답지를 가져옵니다.
+*/
+export function getQuestionnaire() {
+    return new Promise((resolve, reject) => {
+        axios.get(
+            "/question/question_form/"
+        )
+        .then(function (res) {
+            if(res.status == 200) {
+                resolve(res)
+            }
+            else {
+                reject(res)
+            }
+        })
+        .catch(function (err) {
+            reject(err)
+        })
+    })
+}
+
+export function submitQuestionnaireAnswers(answer, point, questionForm, jwt) {
+    return new Promise((resolve, reject) => {
+        var data = {
+            "answer": answer,
+            "point": point,
+            "questionForm": questionForm
+        }
+        axios.post(
+            "/question/",
+            data, {
+                headers: {
+                    'Authorization' : jwt
+                }
+            }
+        )
+        .then(function(res) {
+            if(res.status == 201) {
+                console.log(res)
+                resolve(true)
+            }
+            else {
+                reject(res)
+            }
+        })
+        .catch(function (err) {
+            reject(err)
+        })
+    })
 }
