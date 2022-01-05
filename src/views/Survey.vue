@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import {getQuestionnaire} from '@/apis/patient.js'
+import {getQuestionnaire, submitQuestionnaireAnswers} from '@/apis/patient.js'
 export default {
     name: 'Survey',
     data:() => ({
@@ -51,14 +51,17 @@ export default {
           answersJson[i] = this.answers[i];
         }
 
-        // TODO: api 요청함수 완료되면 주석 풀고 테스트
-        // var point = this.calculatePoint();
-        // var jwt = 'jwt ' + localStorage.getItem('jwt');
-        // var questionForm = this.apiRes['id'];
-        // console.log(answersJson, point, jwt, questionForm); // test
+        var point = this.calculatePoint();
+        var jwt = 'jwt ' + localStorage.getItem('jwt');
+        var questionForm = this.apiRes['id'];
 
-        // TODO: api 요청함수 완료되면 주석 풀고 테스트
-        // submitQuestionnaireAnswers(answersJson, point, questionForm, jwt);
+        submitQuestionnaireAnswers(answersJson, point, questionForm, jwt)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
       },
 
       /*

@@ -124,31 +124,32 @@ export function getQuestionnaire() {
     })
 }
 
-// export function submitQuestionnaireAnswers(answer, point, questionForm, jwt) {
-//     return new Promise((resolve, reject) => {
-//         var formData = new FormData();
-//         formData.append("answer", answer);
-//         formData.append("point", point);
-//         formData.append("patient", '');
-//         formData.append("questionForm", questionForm);
-//         axios.post(
-//             CONSTANTS.DEFAULT_URL + "/question/",
-//             formData, {
-//                 headers: {
-//                     'Authorization' : jwt
-//                 }
-//             }
-//         )
-//         .then(function(res) {
-//             if(res.status == 201) {
-//                 resolve(true)
-//             }
-//             else {
-//                 reject(res)
-//             }
-//         })
-//         .catch(function (err) {
-//             reject(err)
-//         })
-//     })
-// }
+export function submitQuestionnaireAnswers(answer, point, questionForm, jwt) {
+    return new Promise((resolve, reject) => {
+        var data = {
+            "answer": answer,
+            "point": point,
+            "questionForm": questionForm
+        }
+        axios.post(
+            "/question/",
+            data, {
+                headers: {
+                    'Authorization' : jwt
+                }
+            }
+        )
+        .then(function(res) {
+            if(res.status == 201) {
+                console.log(res)
+                resolve(true)
+            }
+            else {
+                reject(res)
+            }
+        })
+        .catch(function (err) {
+            reject(err)
+        })
+    })
+}
