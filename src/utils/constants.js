@@ -1,3 +1,3 @@
 export default Object.freeze({
-    ENDPOINT: "http://127.0.0.1:8000",
+    ENDPOINT: process.env.CONSTANTS_ENDPOINT,
 })
