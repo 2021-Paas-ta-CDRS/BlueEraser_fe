@@ -97,9 +97,20 @@ export default {
       }
     },
     created() {
+        //TODO (devleti): component단에서 formName을 파라미터로 찾는 방법 구현
         getQuestionnaire()
         .then(res => {
-            this.apiRes = res
+            // if(formName == '') {
+            //         resolve(res.data[0])
+            //     }
+            //     else {
+            //         for(var i = 0; i < res.data.length; i++) {
+            //             if(res.data[i]['questionFormName'] == formName) {
+            //                 resolve(res.data[i])
+            //             }
+            //         }
+            // }
+            this.apiRes = res.data[0]
             this.makeAnswersIdx();
         })
         .catch(err => { console.log(err)})

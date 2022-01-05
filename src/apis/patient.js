@@ -1,7 +1,4 @@
 import axios from 'axios';
-// import { resolve,reject } from 'core-js/es/promise/index';
-// import { resolve } from 'core-js/es6/promise';
-// import { reject } from 'core-js/fn/promise';
 import CONSTANTS from '../utils/constants'
 
 axios.defaults.baseURL = CONSTANTS.ENDPOINT;
@@ -12,17 +9,17 @@ login api
 */
 export function login(email, password) {
     return new Promise((resolve, reject) => {
-        var formData = new FormData();
-        formData.append("email", email);
-        formData.append("password", password);
+        var data = {
+            "email": email,
+            "password": password
+        }
         axios.post(
             "/user/login/",
-            formData
+            data
         )
         .then(function (res) {
             if(res.status == 200) {
                 localStorage.setItem('jwt', res.data.token)
-                // console.log(res.status)
                 axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
                 resolve(true);
             }
@@ -40,12 +37,14 @@ registerPatient (환자 회원가입)
 */
 export function registerPatient(email, password) {
     return new Promise((resolve, reject) => {
-        var formData = new FormData();
-        formData.append("email", email);
-        formData.append("password", password);
+        var data = {
+            "email": email,
+            "password": password,
+            "userType": "P"
+        }
         axios.post(
             "/patient/signup/",
-            formData
+            data
         )
         .then(function (res) {
             if(res.status == 201) {
@@ -68,12 +67,14 @@ registerDoctor (의사 회원가입)
 */
 export function registerDoctor(email, password) {
     return new Promise((resolve, reject) => {
-        var formData = new FormData();
-        formData.append("email", email);
-        formData.append("password", password);
+        var data = {
+            "email": email,
+            "password": password,
+            "userType": "D"
+        }
         axios.post(
             "/doctor/signup/",
-            formData
+            data
         )
         .then(function (res) {
             if(res.status == 201) {
@@ -103,27 +104,15 @@ export function updateDoctor(payload) {
 /*
 getQuestionnaire (문답지 가져오기)
 환자용 문답지를 가져옵니다.
-formName이 지정되어 있지 않을 경우 응답으로 온 응답지 array의 0번째 값을 return 합니다.
-지정되어 있을 경우 formName과 일치하는 응답지를 return 합니다. 찾지 못할 경우 0번째 값을 return 합니다.
 */
-// TODO(devleti) : api 호출하는 기능만 놔두고 후처리는 component단에서 하도록
-export function getQuestionnaire(formName = '') {
+export function getQuestionnaire() {
     return new Promise((resolve, reject) => {
         axios.get(
-            CONSTANTS.DEFAULT_URL + "/question/question_form/"
+            "/question/question_form/"
         )
         .then(function (res) {
             if(res.status == 200) {
-                if(formName == '') {
-                    resolve(res.data[0])
-                }
-                else {
-                    for(var i = 0; i < res.data.length; i++) {
-                        if(res.data[i]['questionFormName'] == formName) {
-                            resolve(res.data[i])
-                        }
-                    }
-                }
+                resolve(res)
             }
             else {
                 reject(res)
