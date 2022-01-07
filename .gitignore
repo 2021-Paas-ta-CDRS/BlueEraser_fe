@@ -23,3 +23,5 @@ yarn-error.log
 # End of https://www.toptal.com/developers/gitignore/api/vuejs,vue
 
 .DS_Store
+
+.env
