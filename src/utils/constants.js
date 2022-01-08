@@ -1,3 +1,3 @@
 export default Object.freeze({
-    ENDPOINT: process.env.CONSTANTS_ENDPOINT,
+    ENDPOINT: "https://z2pa5zfam0.execute-api.ap-northeast-2.amazonaws.com/dev",
 })
