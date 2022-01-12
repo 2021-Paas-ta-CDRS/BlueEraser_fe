@@ -94,7 +94,14 @@ export function getDoctorList() {
     return axios.get("/doctor/");
 }
 
+/*의사 소개화면용: {user_id}*/
 export function getDoctor() {
+    return axios.get("/doctor/");
+}
+
+/*의사 본인의 정보를 받아오는 용도*/
+/*doctor/info/ 수정예정*/
+export function getDoctorWithJwt() {
     return axios.get("/doctor/");
 }
 
