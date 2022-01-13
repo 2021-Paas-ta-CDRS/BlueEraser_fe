@@ -4,7 +4,7 @@
 
 <script>
 import SignupFormDoctor from '@/components/SignupFormDoctor.vue'
-import {registerDoctor} from '@/apis/patient.js'
+import {registerDoctor} from '@/apis/doctor.js'
 
 export default {
   name: 'SignupDoctor',

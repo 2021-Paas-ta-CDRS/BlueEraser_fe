@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { getDoctor, updateDoctor } from "@/apis/patient.js"
+import { getDoctor, updateDoctor } from "@/apis/doctor.js"
 export default {
     name: "MyPageDoctor",
     data:() => ({
