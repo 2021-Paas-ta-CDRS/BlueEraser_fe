@@ -2,7 +2,7 @@
     <div class="main">
         <img src="@/assets/main_image.jpg" />
         <div class="container">
-            <h2>당신에게 꼭 맞는 의사를 찾아보세요</h2>
+            <h2>당신에게 꼭 맞는 의사를 찾아보세요!!!</h2>
             <DoctorInfoCard />
         </div>
     </div>
