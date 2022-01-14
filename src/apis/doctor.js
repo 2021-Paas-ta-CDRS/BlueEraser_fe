@@ -51,3 +51,27 @@ export function getDoctorWithJwt() {
 export function updateDoctor(payload) {
     return axios.post("/doctor/update/", payload);
 }
+
+// Todo(Devleti): api 테스트
+export function uploadDoctorCertificate(image) {
+    return new Promise((resolve, reject) => {
+        var formData = new FormData();
+        formData.append('certificateName', 'jwt ' + localStorage.getItem('jwt'))
+        formData.append('certificateImage', image);
+        axios.post(
+            "/doctor/certificate/",
+            formData
+        )
+        .then(function (res) {
+            if(res.status == 201) {
+                console.log(res.status)
+                resolve(true);
+            } else {
+                reject(res);
+            }
+        })
+        .catch(function (err) {
+            reject(err);
+        })
+    })
+}

@@ -15,7 +15,7 @@ export default {
     registerUser(email, password) {
       registerDoctor(email, password)
         .then(() => this.successReg())
-        .catch(() => this.alreadyReg()); // Promise 적용
+        .catch(() => this.alreadyReg());
     },
 
     /*
