@@ -59,6 +59,26 @@
             </li>
             <li>
                 <vs-button
+                gradient
+                :active=true
+                @click="onClickSelectImage"
+                id="selectImageButton"
+                >    
+                의사 증명 이미지 선택
+                </vs-button>
+            </li>
+            <input type="file" name="selectImage" id="selectImage">
+            <li>
+                <vs-button
+                gradient
+                :active=true
+                @click="uploadImage"
+                >    
+                테스트 업로드 버튼
+                </vs-button>
+            </li>
+            <li>
+                <vs-button
                     :active=true
                     @click="saveDoctorInfo"
                 >
@@ -70,7 +90,7 @@
 </template>
 
 <script>
-import { getDoctor, updateDoctor } from "@/apis/doctor.js"
+import { getDoctor, updateDoctor, uploadDoctorCertificate } from "@/apis/doctor.js"
 export default {
     name: "MyPageDoctor",
     data:() => ({
@@ -102,6 +122,8 @@ export default {
             this.address = doctor.address;
             this.profileImage = doctor.profileImage;
         })
+        let fileUploadButton = document.getElementById("selectImage");
+        fileUploadButton.addEventListener('change', this.uploadImage());
     },
     computed: {
         getPayload() {
@@ -117,6 +139,25 @@ export default {
             .then(response => {
                 console.log(response)
             })
+        },
+        onClickSelectImage() {
+            let onClickEvent = document.getElementById("selectImage");
+            onClickEvent.click();
+        },
+        uploadImage() {
+            let fileInput = document.getElementById("selectImage");
+            let image = fileInput.files[0];
+            let fileUploadButton = document.getElementById("selectImageButton");
+            fileUploadButton.setAttribute('upload', true); // 파일 업로드 버튼 업로드 애니메이션 적용
+            uploadDoctorCertificate(image)
+            .then(res => {
+                fileUploadButton.setAttribute('upload', false) // 애니메이션 해제
+                console.log(res);
+            })
+            .catch(err => {
+                fileUploadButton.setAttribute('upload', false) // 애니메이션 해제
+                console.log(err);
+            })
         }
     }
 }
@@ -125,10 +166,15 @@ export default {
 <style lang="scss" scoped>
 .input-list {
     list-style: none;
-    
     .input {
         display: flex;
         height: 70px;
+    }
+    #selectImageButton {
+        margin-bottom: 17px;
+    }
+    #selectImage {
+        display: none;
     }
 }
 </style>

@@ -52,14 +52,19 @@ export function updateDoctor(payload) {
     return axios.post("/doctor/update/", payload);
 }
 
-// Todo(Devleti): api 테스트
+// Todo(Devleti): 401에러 확인
 export function uploadDoctorCertificate(image) {
     return new Promise((resolve, reject) => {
         var formData = new FormData();
-        formData.append('certificateName', 'jwt ' + localStorage.getItem('jwt'))
+        formData.append('certificateName', 'certificate')
         formData.append('certificateImage', image);
         axios.post(
             "/doctor/certificate/",
+            {
+                headers: {
+                    Authorization: 'jwt ' + localStorage.jwt
+                }
+            },
             formData
         )
         .then(function (res) {

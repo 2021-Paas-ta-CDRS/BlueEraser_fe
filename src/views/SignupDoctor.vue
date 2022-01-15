@@ -1,15 +1,15 @@
 <template>
-  <SignupFormDoctor v-on:registerUser="registerUser" />
+  <SignupFormUser v-on:registerUser="registerUser" />
 </template>
 
 <script>
-import SignupFormDoctor from '@/components/SignupFormDoctor.vue'
+import SignupFormUser from '@/components/SignupFormUser.vue'
 import {registerDoctor} from '@/apis/doctor.js'
 
 export default {
   name: 'SignupDoctor',
   components: {
-    SignupFormDoctor
+    SignupFormUser
   },
   methods: {
     registerUser(email, password) {
