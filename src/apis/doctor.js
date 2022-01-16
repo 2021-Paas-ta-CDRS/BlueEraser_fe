@@ -56,13 +56,13 @@ export function updateDoctor(payload) {
 export function uploadDoctorCertificate(image) {
     return new Promise((resolve, reject) => {
         var formData = new FormData();
-        formData.append('certificateName', 'certificate')
+        formData.append('certificateName', 'certificationImage')
         formData.append('certificateImage', image);
         axios.post(
             "/doctor/certificate/",
             {
                 headers: {
-                    Authorization: 'jwt ' + localStorage.jwt
+                    'Authorization': 'jwt ' + localStorage.jwt
                 }
             },
             formData
