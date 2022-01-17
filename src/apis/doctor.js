@@ -53,7 +53,7 @@ export function updateDoctor(payload) {
 }
 
 // Todo(Devleti): 401에러 확인
-export function uploadDoctorCertificate(image) {
+export function uploadDoctorCertificate(jwt, image) {
     return new Promise((resolve, reject) => {
         var formData = new FormData();
         formData.append('certificateName', 'certificationImage')
@@ -62,7 +62,8 @@ export function uploadDoctorCertificate(image) {
             "/doctor/certificate/",
             {
                 headers: {
-                    'Authorization': 'jwt ' + localStorage.jwt
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': 'jwt ' + jwt
                 }
             },
             formData

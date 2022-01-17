@@ -149,7 +149,7 @@ export default {
             let image = fileInput.files[0];
             let fileUploadButton = document.getElementById("selectImageButton");
             fileUploadButton.setAttribute('upload', true); // 파일 업로드 버튼 업로드 애니메이션 적용
-            uploadDoctorCertificate(image)
+            uploadDoctorCertificate(localStorage.jwt, image)
             .then(res => {
                 fileUploadButton.setAttribute('upload', false) // 애니메이션 해제
                 console.log(res);
