@@ -52,7 +52,6 @@ export function updateDoctor(payload) {
     return axios.post("/doctor/update/", payload);
 }
 
-// Todo(Devleti): 401에러 확인
 export function uploadDoctorCertificate(image) {
     return new Promise((resolve, reject) => {
         var formData = new FormData();

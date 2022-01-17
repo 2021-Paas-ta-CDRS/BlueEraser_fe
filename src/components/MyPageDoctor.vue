@@ -122,8 +122,6 @@ export default {
             this.address = doctor.address;
             this.profileImage = doctor.profileImage;
         })
-        let fileUploadButton = document.getElementById("selectImage");
-        fileUploadButton.addEventListener('change', this.uploadImage());
     },
     computed: {
         getPayload() {
@@ -140,10 +138,21 @@ export default {
                 console.log(response)
             })
         },
+        /*
+        * onClickSelectImage()
+        * 이미지 파일 업로드 버튼을 눌렀을 때
+        * file input의 '파일선택'을 누른 이벤트를 발생시킵니다.
+        */
         onClickSelectImage() {
             let onClickEvent = document.getElementById("selectImage");
             onClickEvent.click();
         },
+        /* 
+        * uploadImage()
+        * 선택된 파일을 서버에 업로드 합니다.
+        * 이미지 파일 확인 기능이 없어 필요의 경우 파일 타입 체크를 구현해야합니다.
+        * 업로드가 성공하면 성공 알람을, 실패하면 실패 알람을 우하단에 표시합니다.
+        */
         uploadImage() {
             let fileInput = document.getElementById("selectImage");
             let image = fileInput.files[0];
@@ -152,13 +161,52 @@ export default {
             uploadDoctorCertificate(image)
             .then(res => {
                 fileUploadButton.setAttribute('upload', false) // 애니메이션 해제
-                console.log(res);
+                console.log(res)
+                this.successUpload();
             })
             .catch(err => {
                 fileUploadButton.setAttribute('upload', false) // 애니메이션 해제
                 console.log(err);
+                this.failedUpload();
+            })
+        },
+        /*
+        * successUpload()
+        * 기능 : 파일 업로드에 성공했다는 알림을 우하단에 표시합니다.
+        * Vuesax의 notification 함수입니다.
+        */
+        successUpload(position = null, color = 'success') {
+            this.$vs.notification({
+                progress: 'auto',
+                color,
+                position,
+                title: '파일 업로드를 성공하였습니다.',
+                text: `증명 이미지가 등록되었습니다.`
+            })
+        },
+        /*
+        * failedUpload()
+        * 기능 : 파일 업로드에 실패했다는 알림을 우하단에 표시합니다.
+        * Vuesax의 notification 함수입니다.
+        */
+        failedUpload(position = null, color = 'danger') {
+            this.$vs.notification({
+                progress: 'auto',
+                color,
+                position,
+                title: '파일 업로드를 실패했습니다.',
+                text: `파일명에 한글이 들어간 경우 영문으로 바꿔주세요.`
             })
         }
+    },
+    // Todo(devleti): EventListener 오류 이유 찾기
+    mounted() {
+        let fileUploadButton = document.getElementById("selectImage");
+        fileUploadButton.addEventListener('change', this.uploadImage());
+    },
+    beforeDestroy() {
+        let fileUploadButton = document.getElementById("selectImage");
+        fileUploadButton.removeEventListener('change', this.uploadImage());
     }
 }
 </script>
