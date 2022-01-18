@@ -66,23 +66,18 @@
                 >    
                 의사 증명 이미지 선택
                 </vs-button>
-                <!-- TODO(devleti): 이미지 선택시 vs-input의 value에 경로 업데이트 하기 -->
+            </li>
+            <li>
                 <vs-input
-                label="의사 증명 이미지"
+                label="의사 증명 이미지 경로"
+                v-model="imageDir"
                 placeholder="파일을 선택해주세요"
                 class="imageDirDisplay"
                 />
             </li>
-            <input type="file" name="selectImage" id="selectImage">
-            <li>
-                <vs-button
-                gradient
-                :active=true
-                @click="uploadImage"
-                >    
-                테스트 업로드 버튼
-                </vs-button>
-            </li>
+            <!-- @change를 이용해 파일 선택시 특정 함수를 호출합니다. -->
+            <input type="file" name="selectImage" id="selectImage" @change='updateImageDirValue'>
+            <br>
             <li>
                 <vs-button
                     :active=true
@@ -111,6 +106,7 @@ export default {
         sex: '',
         address: '',
         profileImage: null,
+        imageDir: ''
     }),
     created() {
         getDoctor()
@@ -139,6 +135,7 @@ export default {
     },
     methods: {
         saveDoctorInfo() {
+            this.uploadImage()
             updateDoctor(this.getPayload)
             .then(response => {
                 console.log(response)
@@ -153,12 +150,12 @@ export default {
             let onClickEvent = document.getElementById("selectImage");
             onClickEvent.click()
         },
-        updateImageDirValue() {
-            // TODO(devleti): 이미지 선택시 vs-input의 value에 경로 업데이트 하기
-            console.log('진입')
-            let imageValue = document.getElementById("selectImage");
-            let imageDirDisplay = document.getElementsByClassName("imageDirDisplay");
-            imageDirDisplay.innerHTML = imageValue.value
+        /*
+        * updateImageDirValue(event)
+        * 의사 증명 이미지 경로를 업데이트 합니다.
+        */
+        updateImageDirValue(event) {
+            this.imageDir = event.target.value
         },
         /* 
         * uploadImage()
@@ -169,16 +166,12 @@ export default {
         uploadImage() {
             let fileInput = document.getElementById("selectImage");
             let image = fileInput.files[0];
-            let fileUploadButton = document.getElementById("selectImageButton");
-            fileUploadButton.setAttribute('upload', true); // 파일 업로드 버튼 업로드 애니메이션 적용
             uploadDoctorCertificate(image)
             .then(res => {
-                fileUploadButton.setAttribute('upload', false) // 애니메이션 해제
                 console.log(res)
                 this.successUpload();
             })
             .catch(err => {
-                fileUploadButton.setAttribute('upload', false) // 애니메이션 해제
                 console.log(err);
                 this.failedUpload();
             })
@@ -211,15 +204,6 @@ export default {
                 text: `파일명에 한글이 들어간 경우 영문으로 바꿔주세요.`
             })
         }
-    },
-    // Todo(devleti): EventListener 안되는 현상 수정
-    mounted() {
-        let fileInput = document.getElementById("selectImage");
-        fileInput.addEventListener('change', this.updateImageDirValue());
-    },
-    beforeDestroy() {
-        let fileInput = document.getElementById("selectImage");
-        fileInput.removeEventListener('change', this.updateImageDirValue());
     }
 }
 </script>
@@ -232,7 +216,8 @@ export default {
         height: 70px;
     }
     #selectImageButton {
-        margin-bottom: 17px;
+        margin-top: -5px;
+        margin-bottom: 25px;
     }
     #selectImage {
         display: none;
