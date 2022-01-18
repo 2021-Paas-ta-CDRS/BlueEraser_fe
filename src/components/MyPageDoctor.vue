@@ -66,6 +66,12 @@
                 >    
                 의사 증명 이미지 선택
                 </vs-button>
+                <!-- TODO(devleti): 이미지 선택시 vs-input의 value에 경로 업데이트 하기 -->
+                <vs-input
+                label="의사 증명 이미지"
+                placeholder="파일을 선택해주세요"
+                class="imageDirDisplay"
+                />
             </li>
             <input type="file" name="selectImage" id="selectImage">
             <li>
@@ -104,7 +110,7 @@ export default {
         selfPr: '',
         sex: '',
         address: '',
-        profileImage: null
+        profileImage: null,
     }),
     created() {
         getDoctor()
@@ -145,7 +151,14 @@ export default {
         */
         onClickSelectImage() {
             let onClickEvent = document.getElementById("selectImage");
-            onClickEvent.click();
+            onClickEvent.click()
+        },
+        updateImageDirValue() {
+            // TODO(devleti): 이미지 선택시 vs-input의 value에 경로 업데이트 하기
+            console.log('진입')
+            let imageValue = document.getElementById("selectImage");
+            let imageDirDisplay = document.getElementsByClassName("imageDirDisplay");
+            imageDirDisplay.innerHTML = imageValue.value
         },
         /* 
         * uploadImage()
@@ -199,14 +212,14 @@ export default {
             })
         }
     },
-    // Todo(devleti): EventListener 오류 이유 찾기
+    // Todo(devleti): EventListener 안되는 현상 수정
     mounted() {
-        let fileUploadButton = document.getElementById("selectImage");
-        fileUploadButton.addEventListener('change', this.uploadImage());
+        let fileInput = document.getElementById("selectImage");
+        fileInput.addEventListener('change', this.updateImageDirValue());
     },
     beforeDestroy() {
-        let fileUploadButton = document.getElementById("selectImage");
-        fileUploadButton.removeEventListener('change', this.uploadImage());
+        let fileInput = document.getElementById("selectImage");
+        fileInput.removeEventListener('change', this.updateImageDirValue());
     }
 }
 </script>
