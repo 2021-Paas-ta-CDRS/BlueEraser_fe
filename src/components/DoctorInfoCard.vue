@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import {getDoctorList} from '@/apis/patient.js'
+import {getDoctorList} from '@/apis/doctor.js'
 
 export default {
     data() {

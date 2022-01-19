@@ -59,6 +59,27 @@
             </li>
             <li>
                 <vs-button
+                gradient
+                :active=true
+                @click="onClickSelectImage"
+                id="selectImageButton"
+                >    
+                의사 증명 이미지 선택
+                </vs-button>
+            </li>
+            <li>
+                <vs-input
+                label="의사 증명 이미지 경로"
+                v-model="imageDir"
+                placeholder="파일을 선택해주세요"
+                class="imageDirDisplay"
+                />
+            </li>
+            <!-- @change를 이용해 파일 선택시 특정 함수를 호출합니다. -->
+            <input type="file" name="selectImage" id="selectImage" @change='updateImageDirValue'>
+            <br>
+            <li>
+                <vs-button
                     :active=true
                     @click="saveDoctorInfo"
                 >
@@ -70,7 +91,7 @@
 </template>
 
 <script>
-import { getDoctor, updateDoctor } from "@/apis/patient.js"
+import { getDoctor, updateDoctor, uploadDoctorCertificate } from "@/apis/doctor.js"
 export default {
     name: "MyPageDoctor",
     data:() => ({
@@ -84,7 +105,8 @@ export default {
         selfPr: '',
         sex: '',
         address: '',
-        profileImage: null
+        profileImage: null,
+        imageDir: ''
     }),
     created() {
         getDoctor()
@@ -113,9 +135,73 @@ export default {
     },
     methods: {
         saveDoctorInfo() {
+            this.uploadImage()
             updateDoctor(this.getPayload)
             .then(response => {
                 console.log(response)
+            })
+        },
+        /*
+        * onClickSelectImage()
+        * 이미지 파일 업로드 버튼을 눌렀을 때
+        * file input의 '파일선택'을 누른 이벤트를 발생시킵니다.
+        */
+        onClickSelectImage() {
+            let onClickEvent = document.getElementById("selectImage");
+            onClickEvent.click()
+        },
+        /*
+        * updateImageDirValue(event)
+        * 의사 증명 이미지 경로를 업데이트 합니다.
+        */
+        updateImageDirValue(event) {
+            this.imageDir = event.target.value
+        },
+        /* 
+        * uploadImage()
+        * 선택된 파일을 서버에 업로드 합니다.
+        * 이미지 파일 확인 기능이 없어 필요의 경우 파일 타입 체크를 구현해야합니다.
+        * 업로드가 성공하면 성공 알람을, 실패하면 실패 알람을 우하단에 표시합니다.
+        */
+        uploadImage() {
+            let fileInput = document.getElementById("selectImage");
+            let image = fileInput.files[0];
+            uploadDoctorCertificate(image)
+            .then(res => {
+                console.log(res)
+                this.successUpload();
+            })
+            .catch(err => {
+                console.log(err);
+                this.failedUpload();
+            })
+        },
+        /*
+        * successUpload()
+        * 기능 : 파일 업로드에 성공했다는 알림을 우하단에 표시합니다.
+        * Vuesax의 notification 함수입니다.
+        */
+        successUpload(position = null, color = 'success') {
+            this.$vs.notification({
+                progress: 'auto',
+                color,
+                position,
+                title: '파일 업로드를 성공하였습니다.',
+                text: `증명 이미지가 등록되었습니다.`
+            })
+        },
+        /*
+        * failedUpload()
+        * 기능 : 파일 업로드에 실패했다는 알림을 우하단에 표시합니다.
+        * Vuesax의 notification 함수입니다.
+        */
+        failedUpload(position = null, color = 'danger') {
+            this.$vs.notification({
+                progress: 'auto',
+                color,
+                position,
+                title: '파일 업로드를 실패했습니다.',
+                text: `파일명에 한글이 들어간 경우 영문으로 바꿔주세요.`
             })
         }
     }
@@ -125,10 +211,16 @@ export default {
 <style lang="scss" scoped>
 .input-list {
     list-style: none;
-    
     .input {
         display: flex;
         height: 70px;
+    }
+    #selectImageButton {
+        margin-top: -5px;
+        margin-bottom: 25px;
+    }
+    #selectImage {
+        display: none;
     }
 }
 </style>

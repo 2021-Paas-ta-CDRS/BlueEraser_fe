@@ -1,21 +1,21 @@
 <template>
-  <SignupForm v-on:registerUser="registerUser" />
+  <SignupFormUser v-on:registerUser="registerUser" />
 </template>
 
 <script>
-import SignupForm from '@/components/SignupForm.vue'
-import {registerDoctor} from '@/apis/patient.js'
+import SignupFormUser from '@/components/SignupFormUser.vue'
+import {registerDoctor} from '@/apis/doctor.js'
 
 export default {
   name: 'SignupDoctor',
   components: {
-    SignupForm
+    SignupFormUser
   },
   methods: {
     registerUser(email, password) {
       registerDoctor(email, password)
         .then(() => this.successReg())
-        .catch(() => this.alreadyReg()); // Promise 적용
+        .catch(() => this.alreadyReg());
     },
 
     /*

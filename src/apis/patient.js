@@ -40,7 +40,7 @@ export function registerPatient(email, password) {
         var data = {
             "email": email,
             "password": password,
-            "userType": "P"
+            "userType": CONSTANTS.USER_TYPE.PATIENT
         }
         axios.post(
             "/patient/signup/",
@@ -49,7 +49,7 @@ export function registerPatient(email, password) {
         .then(function (res) {
             if(res.status == 201) {
                 console.log(res.status)
-                resolve(true);
+                resolve(res);
             } else {
                 reject(res);
             }
@@ -60,47 +60,6 @@ export function registerPatient(email, password) {
     })
 }
 
-/*
-registerDoctor (의사 회원가입)
-성공시 resolve에 true 선언
-실패시 reject에 error 선언
-*/
-export function registerDoctor(email, password) {
-    return new Promise((resolve, reject) => {
-        var data = {
-            "email": email,
-            "password": password,
-            "userType": "D"
-        }
-        axios.post(
-            "/doctor/signup/",
-            data
-        )
-        .then(function (res) {
-            if(res.status == 201) {
-                console.log(res.status)
-                resolve(true);
-            } else {
-                reject(res);
-            }
-        })
-        .catch(function (err) {
-            reject(err);
-        })
-    })
-}
-
-export function getDoctorList() {
-    return axios.get("/doctor/");
-}
-
-export function getDoctor() {
-    return axios.get("/doctor/");
-}
-
-export function updateDoctor(payload) {
-    return axios.post("/doctor/update/", payload);
-}
 /*
 getQuestionnaire (문답지 가져오기)
 환자용 문답지를 가져옵니다.
