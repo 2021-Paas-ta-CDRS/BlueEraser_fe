@@ -13,7 +13,7 @@ export function registerDoctor(email, password) {
         var data = {
             "email": email,
             "password": password,
-            "userType": "D"
+            "userType": CONSTANTS.USERTYPE.DOCTOR
         }
         axios.post(
             "/doctor/signup/",
@@ -21,13 +21,14 @@ export function registerDoctor(email, password) {
         )
         .then(function (res) {
             if(res.status == 201) {
-                console.log(res.status)
-                resolve(true);
+                resolve(res);
             } else {
+                console.log(res)
                 reject(res);
             }
         })
         .catch(function (err) {
+            console.log(err)
             reject(err);
         })
     })
@@ -44,7 +45,7 @@ export function getDoctor(user_id) {
 
 /*의사 본인의 정보를 받아오는 용도*/
 /*doctor/info/ 수정예정*/
-export function getDoctorWithJwt() {
+export function getMyDoctorInfo() {
     return axios.get("/doctor/");
 }
 
@@ -68,8 +69,7 @@ export function uploadDoctorCertificate(image) {
         )
         .then(function (res) {
             if(res.status == 201) {
-                console.log(res.status)
-                resolve(true);
+                resolve(res);
             } else {
                 reject(res);
             }
