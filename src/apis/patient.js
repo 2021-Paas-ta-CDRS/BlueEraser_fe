@@ -40,7 +40,7 @@ export function registerPatient(email, password) {
         var data = {
             "email": email,
             "password": password,
-            "userType": "P"
+            "userType": CONSTANTS.USER_TYPE.PATIENT
         }
         axios.post(
             "/patient/signup/",
@@ -49,7 +49,7 @@ export function registerPatient(email, password) {
         .then(function (res) {
             if(res.status == 201) {
                 console.log(res.status)
-                resolve(true);
+                resolve(res);
             } else {
                 reject(res);
             }

@@ -13,7 +13,7 @@ export function registerDoctor(email, password) {
         var data = {
             "email": email,
             "password": password,
-            "userType": CONSTANTS.USERTYPE.DOCTOR
+            "userType": CONSTANTS.USER_TYPE.DOCTOR
         }
         axios.post(
             "/doctor/signup/",
