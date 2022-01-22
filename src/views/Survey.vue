@@ -52,10 +52,9 @@ export default {
         }
 
         var point = this.calculatePoint();
-        var jwt = 'jwt ' + localStorage.getItem('jwt');
         var questionForm = this.apiRes['id'];
 
-        submitQuestionnaireAnswers(answersJson, point, questionForm, jwt)
+        submitQuestionnaireAnswers(answersJson, point, questionForm)
         .then(res => {
             console.log(res)
         })

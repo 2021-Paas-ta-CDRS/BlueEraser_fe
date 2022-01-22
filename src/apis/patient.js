@@ -83,7 +83,8 @@ export function getQuestionnaire() {
     })
 }
 
-export function submitQuestionnaireAnswers(answer, point, questionForm, jwt) {
+// TODO(Devleti): 백틱으로 수정
+export function submitQuestionnaireAnswers(answer, point, questionForm) {
     return new Promise((resolve, reject) => {
         var data = {
             "answer": answer,
@@ -94,7 +95,7 @@ export function submitQuestionnaireAnswers(answer, point, questionForm, jwt) {
             "/question/",
             data, {
                 headers: {
-                    'Authorization' : jwt
+                    'Authorization' : 'jwt ' + localStorage.jwt
                 }
             }
         )
