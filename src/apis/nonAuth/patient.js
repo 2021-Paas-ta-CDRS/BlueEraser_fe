@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 import CONSTANTS from '../utils/constants'
 
 axios.defaults.baseURL = CONSTANTS.ENDPOINT;
