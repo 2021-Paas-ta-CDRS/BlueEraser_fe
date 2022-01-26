@@ -1,27 +1,26 @@
 <template>
-    <vs-card-group>
-        <vs-card v-for="doctor in doctors" v-bind:key="doctor">
-            <template #title>
-                <h3>{{ doctor.name }}</h3>
-            </template>
-            <template #img>
-                <img :src="doctor.profileImage" alt="">
-            </template>
-            <template #text>
-                <p>
-                    자기소개를 이곳에 써주세요.
-                    자기소개를 이곳에 써주세요.
-                    자기소개를 이곳에 써주세요.
-                    자기소개를 이곳에 써주세요.
-                    자기소개를 이곳에 써주세요.
-                    자기소개를 이곳에 써주세요.
-                    자기소개를 이곳에 써주세요.
-                    자기소개를 이곳에 써주세요.
-                    자기소개를 이곳에 써주세요.
-                </p>
-            </template>
-        </vs-card>
-    </vs-card-group>
+    <b-card-group>
+        <!-- <b-carousel-slide
+            v-for="doctor in doctors" 
+            v-bind:key="doctor"
+            :caption="doctor.name"
+            text="자기소개를 이곳에 써주세요."
+            img-src="https://picsum.photos/1024/480/?image=52"
+        ></b-carousel-slide> -->
+        <b-card 
+            v-for="doctor in doctors" 
+            v-bind:key="doctor"
+            :title="doctor.name" 
+            img-src="https://picsum.photos/1024/480/?image=52"
+            img-alt="Image" 
+            img-top
+        >
+            <b-card-text>
+                자기소개를 이곳에 써주세요.
+            </b-card-text>
+        </b-card>
+        
+    </b-card-group>
 </template>
 
 <script lang='ts'>
@@ -37,9 +36,3 @@ export default class HelloWorld extends Vue {
     }
 }
 </script>
-
-<style lang="scss">
-.vs-card__group-cards::-webkit-scrollbar {
-    display: none;
-}
-</style>
